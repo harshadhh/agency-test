@@ -43,10 +43,7 @@
   html, body                 { overflow-x: hidden; max-width: 100vw; }
   section, footer, nav,
   #ticker, #process-section,
-  #process-wrapper,
-  #process-sticky            { max-width: 100vw; overflow-x: hidden; }
-  #process-track             { width: 100% !important; max-width: 100vw; flex-direction: column; transform: none !important; padding: 0 1.1rem 2.8rem; gap: .9rem; }
-  .pstep                     { width: 100% !important; min-width: unset !important; }
+  #process-wrapper           { max-width: 100vw; overflow-x: hidden; }
   #cursor                    { display: none !important; }
   body                       { cursor: auto !important; }
   a, button, [data-tilt],
@@ -102,24 +99,25 @@
 
   /* ─────────────────────────────────────────────
      ABOUT — fit ASCII + text inside screen
+     NOTE: ascii-pre font-size is set by ascii.js fitFont() using container width
   ───────────────────────────────────────────── */
   #about                     { padding: 2.8rem 1.1rem; overflow: hidden; }
-  .about-grid                { grid-template-columns: 1fr; gap: 1.4rem; }
+  .about-grid                { grid-template-columns: 1fr; gap: 1.4rem; width: 100%; }
   #ascii-pre                 {
-    /* 90 chars wide — use vw so it fills the screen naturally */
-    font-size: 0.82vw;
-    line-height: 1.05;
     width: 100%;
     max-width: 100%;
     overflow: hidden;
-    transform: none;
+    display: block;
+    box-sizing: border-box;
   }
   .manifesto-text            {
     font-size: .85rem;
     line-height: 1.65;
     overflow-wrap: break-word;
     word-break: break-word;
+    width: 100%;
     max-width: 100%;
+    display: block;
   }
   .about-stats               {
     display: flex;
@@ -128,15 +126,16 @@
     gap: 0;
     margin-top: 1.8rem;
     padding-top: 1.2rem;
-    justify-content: space-between;
+    width: 100%;
     max-width: 100%;
+    justify-content: space-between;
   }
-  .about-stats > div         { flex: 1; padding-right: .5rem; }
+  .about-stats > div         { flex: 1; min-width: 0; padding-right: .5rem; }
   .about-stats > div:last-child { padding-right: 0; }
-  .stat-num                  { font-size: clamp(1.3rem, 5.5vw, 1.8rem); margin-bottom: .2rem; }
-  .stat-label                { font-size: .42rem; letter-spacing: .16em; line-height: 1.4; }
-  .sec-cta-row               { max-width: 100%; overflow: hidden; }
-  .sec-cta-btn               { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .stat-num                  { font-size: clamp(1.1rem, 5vw, 1.6rem); margin-bottom: .2rem; }
+  .stat-label                { font-size: .4rem; letter-spacing: .14em; line-height: 1.4; }
+  #about .sec-cta-row        { max-width: 100%; }
+  #about .sec-cta-btn        { max-width: calc(100vw - 2.2rem); overflow: hidden; text-overflow: ellipsis; }
 
   /* ─────────────────────────────────────────────
      PROCESS  (Images 3 & 4)

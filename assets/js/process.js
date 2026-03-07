@@ -10,7 +10,9 @@ window.initProcess = function () {
     sticky.style.cssText = 'position:relative;height:auto;overflow:visible;display:block;';
     track.style.cssText  = 'display:flex;flex-direction:column;width:100%;transform:none;will-change:auto;gap:.9rem;padding:0 1.1rem 2.8rem;';
     track.querySelectorAll('.pstep').forEach(function(s){
-      s.style.cssText = 'width:100%;min-width:unset;';
+      /* Only override width/min-width — keep all other styles from CSS */
+      s.style.width    = '100%';
+      s.style.minWidth = 'unset';
       s.classList.add('active');
     });
     track.querySelectorAll('.arc-circle').forEach(function(a){ a.style.strokeDashoffset = '0'; });

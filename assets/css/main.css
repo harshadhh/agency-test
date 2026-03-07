@@ -195,5 +195,12 @@ html {
 /* ── HARD STOP: no section can ever cause horizontal scroll ── */
 section, footer, header, nav, #ticker {
   max-width: 100%;
+}
+/* Process section needs overflow visible for GSAP horizontal scroll */
+#process-section, #process-wrapper, #process-sticky {
+  overflow-x: visible;
+}
+/* Everything else clips horizontal overflow */
+#hero, #work, #about, #services, #testimonials, #cta, footer, #ticker {
   overflow-x: hidden;
 }

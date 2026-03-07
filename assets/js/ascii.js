@@ -159,6 +159,8 @@ window.initAscii = function () {
     pre.style.lineHeight = '1.08';
   }
   fitFont();
+  /* Also refit on load (fonts/layout may shift dimensions) */
+  window.addEventListener('load', fitFont);
   window.addEventListener('resize', fitFont, {passive: true});
 
   function draw(){
