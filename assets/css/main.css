@@ -1,0 +1,199 @@
+:root {
+  --bg:      #0D0D0D;
+  --orange:  #FF4D00;
+  --cream:   #F5F0E8;
+  --card:    #1A1A1A;
+  --gold:    #FFD166;
+  --muted:   #6B6560;
+  --bg-cta:  #180A00;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+  font-size: 16px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--cream);
+  font-family: 'Cabinet Grotesk', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+  transition: background 600ms ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.cta-active {
+  background: var(--bg-cta);
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 2px; }
+
+/* Shared section labels */
+.sec-eyebrow {
+  font-family: 'Clash Display', sans-serif;
+  font-weight: 400;
+  font-size: .62rem;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+}
+.sec-eyebrow::after {
+  content: '';
+  width: 2.8rem;
+  height: 1px;
+  background: var(--orange);
+  opacity: .7;
+}
+
+.sec-title {
+  font-family: 'Clash Display', sans-serif;
+  font-weight: 600;
+  font-size: clamp(2.4rem, 4.2vw, 4.4rem);
+  letter-spacing: -.025em;
+  line-height: 1;
+  margin-bottom: 4rem;
+}
+
+/* Scroll reveal */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity .85s cubic-bezier(.23,1,.32,1),
+              transform .85s cubic-bezier(.23,1,.32,1);
+}
+[data-reveal].visible {
+  opacity: 1;
+  transform: none;
+}
+[data-reveal="d1"] { transition-delay: .12s; }
+[data-reveal="d2"] { transition-delay: .24s; }
+
+/* ── SECTION CTA BUTTONS ─────────────────────── */
+.sec-cta-row {
+  display: flex;
+  justify-content: center;   /* always centred */
+  align-items: center;
+  margin-top: 4rem;
+  padding: .5rem 0;
+}
+
+/* The pill wrapper — holds canvas + text */
+.sec-cta-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: .85rem;
+  font-family: 'Clash Display', sans-serif;
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: #F5F0E8;
+  text-decoration: none;
+  cursor: none;
+  /* pill shape */
+  padding: 1rem 2.2rem 1rem 1.4rem;
+  border-radius: 100px;
+  border: 1px solid rgba(255,77,0,.22);
+  background: rgba(255,77,0,.04);
+  overflow: hidden;
+  /* smooth border/bg on hover */
+  transition: border-color .45s, color .35s, gap .4s cubic-bezier(.23,1,.32,1);
+  z-index: 1;
+}
+
+/* Living canvas behind the text */
+.sec-cta-btn canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  border-radius: 100px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .55;
+  transition: opacity .45s;
+}
+.sec-cta-btn:hover canvas { opacity: .85; }
+
+/* Text + arrow sit above canvas */
+.sec-cta-btn .cta-label,
+.sec-cta-btn .cta-arrow {
+  position: relative; z-index: 1;
+}
+
+/* Animated dot — left side */
+.sec-cta-btn .cta-dot {
+  position: relative; z-index: 1;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #FF4D00;
+  box-shadow: 0 0 0 0 rgba(255,77,0,.5);
+  flex-shrink: 0;
+  animation: dotPulse 2s ease-in-out infinite;
+}
+@keyframes dotPulse {
+  0%   { box-shadow: 0 0 0 0   rgba(255,77,0,.55); }
+  60%  { box-shadow: 0 0 0 8px rgba(255,77,0,0);   }
+  100% { box-shadow: 0 0 0 0   rgba(255,77,0,0);   }
+}
+
+/* Arrow */
+.sec-cta-btn .cta-arrow {
+  font-size: 1rem;
+  display: inline-block;
+  transition: transform .4s cubic-bezier(.23,1,.32,1);
+}
+.sec-cta-btn:hover { border-color: rgba(255,77,0,.55); gap: 1.2rem; }
+.sec-cta-btn:hover .cta-arrow { transform: translateX(5px); }
+
+/* Services 4-col on homepage */
+#services .services-grid {
+  grid-template-columns: repeat(4, 1fr) !important;
+}
+@media (max-width: 1000px) {
+  #services .services-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 600px) {
+  #services .services-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ── AMBIENT CANVAS — sits behind everything ── */
+#ambient-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Ensure all page content sits above the canvas */
+nav, section, footer, .nav-mobile-menu,
+#hero, #work, #about, #ticker,
+#services, #process-section,
+#testimonials, #cta {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── PREVENT HORIZONTAL OVERFLOW GLOBALLY ── */
+html {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* ── HARD STOP: no section can ever cause horizontal scroll ── */
+section, footer, header, nav, #ticker {
+  max-width: 100%;
+  overflow-x: hidden;
+}

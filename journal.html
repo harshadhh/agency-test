@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PEAKMEDIA — The Journal</title>
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&f[]=cabinet-grotesk@400,500,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/nav.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <style>
+    .page-hero { padding:14rem 3rem 6rem; max-width:1380px; margin:0 auto; }
+    .page-label { font-family:'Clash Display',sans-serif; font-size:.62rem; letter-spacing:.42em; text-transform:uppercase; color:var(--orange); margin-bottom:1.5rem; display:flex; align-items:center; gap:.8rem; }
+    .page-label::before { content:''; width:1.8rem; height:1px; background:var(--orange); }
+    .page-title { font-family:'Clash Display',sans-serif; font-weight:700; font-size:clamp(4rem,9vw,10rem); letter-spacing:-.04em; line-height:.92; }
+    .page-title span { color:var(--orange); }
+    .posts-grid { padding:0 3rem 8rem; max-width:1380px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:1.4rem; }
+    .post-card { background:var(--card); border-radius:10px; overflow:hidden; border:1px solid rgba(245,240,232,.05); transition:border-color .3s; cursor:none; }
+    .post-card:hover { border-color:rgba(255,77,0,.2); }
+    .post-thumb { height:220px; background:linear-gradient(135deg,#1a0800,#0d0400); position:relative; overflow:hidden; }
+    .post-thumb::after { content:''; position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,.6),transparent); }
+    .post-body { padding:2rem; }
+    .post-meta { display:flex; align-items:center; gap:1rem; margin-bottom:1rem; }
+    .post-tag { font-size:.55rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--orange); border:1px solid rgba(255,77,0,.25); padding:.2rem .6rem; border-radius:2rem; }
+    .post-date { font-size:.6rem; letter-spacing:.12em; color:var(--muted); }
+    .post-title { font-family:'Clash Display',sans-serif; font-weight:600; font-size:1.3rem; line-height:1.2; margin-bottom:.75rem; transition:color .3s; }
+    .post-card:hover .post-title { color:var(--orange); }
+    .post-excerpt { font-size:.855rem; line-height:1.68; color:var(--muted); }
+    .post-read { display:inline-flex; align-items:center; gap:.4rem; font-size:.65rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--orange); margin-top:1.2rem; text-decoration:none; transition:gap .3s; }
+    .post-read:hover { gap:.7rem; }
+    .featured-post { grid-column:span 2; display:grid; grid-template-columns:1.4fr 1fr; }
+    .featured-post .post-thumb { height:100%; min-height:360px; }
+  </style>
+<style>
+.page-eye{opacity:0;}
+.page-title .title-line{display:block;overflow:hidden;}
+.page-title .title-inner{display:block;transform:translateY(110%);}
+</style>
+</head>
+<body>
+  <div id="cursor"></div>
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">PEAKMEDIA<span class="nav-logo-sub">Studio</span></a>
+    <div class="nav-right">
+    <a href="work.html" class="nav-link">Work</a>
+    <a href="services.html" class="nav-link">Services</a>
+    <a href="studio.html" class="nav-link">Studio</a>
+    <a href="founders.html" class="nav-link">Founders</a>
+    <a href="contact.html" class="nav-cta">Start a Project</a>
+  </div>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+  </nav>
+  <!-- MOBILE MENU -->
+  <div class="nav-mobile-menu" id="nav-mobile-menu">
+    <button class="nav-mobile-close" id="nav-mobile-close" aria-label="Close menu">✕</button>
+    <a href="index.html">Home</a>
+    <a href="work.html">Work</a>
+    <a href="services.html">Services</a>
+    <a href="studio.html">Studio</a>
+    <a href="founders.html">Founders</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <div class="page-hero">
+    <div class="page-eye">The Journal</div>
+    <h1 class="page-title">
+      <span class="title-line"><span class="title-inner">Thoughts on</span></span>
+      <span class="title-line"><span class="title-inner"><span>craft.</span></span></span>
+    </h1>
+  </div>
+
+  <div class="posts-grid">
+
+    <div class="post-card featured-post" data-reveal>
+      <div class="post-thumb" style="background:linear-gradient(135deg,#3a1400,#0d0400)"></div>
+      <div class="post-body">
+        <div class="post-meta">
+          <span class="post-tag">Process</span>
+          <span class="post-date">Dec 12, 2024</span>
+        </div>
+        <div class="post-title">Why we stopped using Figma for final designs</div>
+        <div class="post-excerpt">The gap between a Figma mockup and a real browser is where most agencies quietly abandon their ambition. We closed the gap by removing the handoff entirely.</div>
+        <a href="#" class="post-read">Read Article →</a>
+      </div>
+    </div>
+
+    <div class="post-card" data-reveal>
+      <div class="post-thumb" style="background:linear-gradient(135deg,#090920,#060612)"></div>
+      <div class="post-body">
+        <div class="post-meta"><span class="post-tag">Typography</span><span class="post-date">Nov 28, 2024</span></div>
+        <div class="post-title">Variable fonts changed how we think about type in motion</div>
+        <div class="post-excerpt">When a typeface can breathe, you stop thinking about animation as a layer on top and start thinking about it as a property of the type itself.</div>
+        <a href="#" class="post-read">Read Article →</a>
+      </div>
+    </div>
+
+    <div class="post-card" data-reveal="d1">
+      <div class="post-thumb" style="background:linear-gradient(135deg,#001a08,#000b04)"></div>
+      <div class="post-body">
+        <div class="post-meta"><span class="post-tag">Performance</span><span class="post-date">Nov 5, 2024</span></div>
+        <div class="post-title">The case for doing less animation, better</div>
+        <div class="post-excerpt">Most sites overanimate because they can. We've learned that removing 60% of our animations and making the remaining 40% perfect is always the right trade.</div>
+        <a href="#" class="post-read">Read Article →</a>
+      </div>
+    </div>
+
+    <div class="post-card" data-reveal>
+      <div class="post-thumb" style="background:linear-gradient(135deg,#1a001a,#0d000d)"></div>
+      <div class="post-body">
+        <div class="post-meta"><span class="post-tag">Craft</span><span class="post-date">Oct 18, 2024</span></div>
+        <div class="post-title">On the obsessive details nobody will ever consciously see</div>
+        <div class="post-excerpt">The easing curve on a 200ms transition. The 0.015em letter-spacing on a heading. These are the details that separate something that feels right from something that just works.</div>
+        <a href="#" class="post-read">Read Article →</a>
+      </div>
+    </div>
+
+    <div class="post-card" data-reveal="d1">
+      <div class="post-thumb" style="background:linear-gradient(135deg,#0a1a00,#060f00)"></div>
+      <div class="post-body">
+        <div class="post-meta"><span class="post-tag">Client Work</span><span class="post-date">Sep 30, 2024</span></div>
+        <div class="post-title">How we rebuilt Vault Digital's identity without losing their soul</div>
+        <div class="post-excerpt">The brief said "modernise." What they actually needed was the courage to double down on what already made them different. Here's how we figured that out.</div>
+        <a href="#" class="post-read">Read Article →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="assets/js/cursor.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      gsap.registerPlugin(ScrollTrigger);
+      initCursor();
+      document.getElementById('nav').classList.add('scrolled');
+      var ro = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); } }); }, {threshold:.1});
+      document.querySelectorAll('[data-reveal]').forEach(function(el){ ro.observe(el); });
+    });
+  </script>
+<script src="assets/js/page-enter.js"></script>
+<script>document.addEventListener("DOMContentLoaded",function(){initPageEnter("THE JOURNAL");});</script>
+
+  <script>
+  (function(){
+    var btn   = document.getElementById('nav-hamburger');
+    var menu  = document.getElementById('nav-mobile-menu');
+    var close = document.getElementById('nav-mobile-close');
+    if(!btn) return;
+    function openMenu(){
+      menu.classList.add('open');
+      btn.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu(){
+      menu.classList.remove('open');
+      btn.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    btn.addEventListener('click', openMenu);
+    if(close) close.addEventListener('click', closeMenu);
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', closeMenu);
+    });
+    // close on ESC
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape') closeMenu();
+    });
+  })();
+  </script>
+  <script src="assets/js/ambient.js"></script>
+</body>
+</html>

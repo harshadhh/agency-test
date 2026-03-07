@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PEAKMEDIA — We build code-based websites. Nothing else.</title>
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&f[]=cabinet-grotesk@400,500,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/nav.css">
+  <link rel="stylesheet" href="assets/css/hero.css">
+  <link rel="stylesheet" href="assets/css/ticker.css">
+  <link rel="stylesheet" href="assets/css/work.css">
+  <link rel="stylesheet" href="assets/css/about.css">
+  <link rel="stylesheet" href="assets/css/process.css">
+  <link rel="stylesheet" href="assets/css/services.css">
+  <link rel="stylesheet" href="assets/css/testimonials.css">
+  <link rel="stylesheet" href="assets/css/cta.css">
+  <link rel="stylesheet" href="assets/css/footer.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+
+  <div id="cursor"></div>
+
+  <svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+    <defs>
+      <filter id="blob-goo" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="8" result="blur"/>
+        <feColorMatrix in="blur" mode="matrix"
+          values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -10" result="goo"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">PEAKMEDIA<span class="nav-logo-sub">Studio</span></a>
+    <div class="nav-right">
+    <a href="work.html" class="nav-link">Work</a>
+    <a href="services.html" class="nav-link">Services</a>
+    <a href="studio.html" class="nav-link">Studio</a>
+    <a href="founders.html" class="nav-link">Founders</a>
+    <a href="coming-soon.html" class="nav-teaser" id="nav-teaser">
+      <span class="nt-ring"></span>
+      <span class="nt-ring nt-ring2"></span>
+      <span class="nt-dot"></span>
+      <span class="nt-label">What's Coming</span>
+      <span class="nt-arrow">↗</span>
+    </a>
+    <a href="contact.html" class="nav-cta">Start a Project</a>
+  </div>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="nav-mobile-menu" id="nav-mobile-menu">
+    <button class="nav-mobile-close" id="nav-mobile-close" aria-label="Close">✕</button>
+    <a href="index.html">Home</a>
+    <a href="work.html">Work</a>
+    <a href="services.html">Services</a>
+    <a href="studio.html">Studio</a>
+    <a href="founders.html">Founders</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- [01] HERO -->
+  <section id="hero">
+    <p class="hero-eyebrow" id="hero-eyebrow">Custom Code. Zero Templates. Built to Perform.</p>
+    <div class="hero-word" id="hero-word"></div>
+    <p class="hero-subtitle" id="hero-subtitle">We build code-based websites. Nothing else.</p>
+    <a href="#work" class="hero-cta" id="hero-cta">
+      See the work <span class="hero-arrow">↓</span>
+    </a>
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      <span class="scroll-label">Scroll</span>
+    </div>
+  </section>
+
+  <!-- [02] TICKER -->
+  <div id="ticker">
+    <div class="ticker-row forward"  id="ticker-top"></div>
+    <div class="ticker-row backward" id="ticker-bottom"></div>
+  </div>
+
+  <!-- [03] WORK -->
+  <section id="work">
+    <div class="work-inner">
+      <div class="work-top-row" data-reveal>
+        <div>
+          <div class="sec-eyebrow">Selected Work</div>
+          <h2 class="sec-title" style="margin-bottom:0">Websites that<br>do the talking.</h2>
+        </div>
+        <div class="work-counter">
+          <div class="wc-num" id="wc-num" data-val="62">000</div>
+          <div class="wc-label">websites<br>shipped</div>
+        </div>
+      </div>
+      <div class="work-grid">
+        <div class="wcard" data-mag>
+          <div class="wcard-line"></div><div class="wcard-scan"></div>
+          <div class="wcard-bg" style="background:linear-gradient(155deg,#3a1400 0%,#1a0800 45%,#0d0400 100%)"></div>
+          <div class="wcard-overlay"></div>
+          <div class="wcard-info">
+            <div class="wcard-num">01 — 2024</div>
+            <div class="wcard-title">FOLIO<br>COLLECTIVE</div>
+            <div class="wcard-tags">
+              <span class="wtag">Branding</span>
+              <span class="wtag">Web Design</span>
+              <span class="wtag">Motion</span>
+            </div>
+          </div>
+        </div>
+        <div class="wcard" data-mag>
+          <div class="wcard-line"></div><div class="wcard-scan"></div>
+          <div class="wcard-bg" style="background:linear-gradient(135deg,#090920 0%,#0d0d22 50%,#060612 100%)"></div>
+          <div class="wcard-overlay"></div>
+          <div class="wcard-info">
+            <div class="wcard-num">02 — 2024</div>
+            <div class="wcard-title">VAULT<br>DIGITAL</div>
+            <div class="wcard-tags">
+              <span class="wtag">Product</span>
+              <span class="wtag">UI/UX</span>
+            </div>
+          </div>
+        </div>
+        <div class="wcard" data-mag>
+          <div class="wcard-line"></div><div class="wcard-scan"></div>
+          <div class="wcard-bg" style="background:linear-gradient(135deg,#001a08 0%,#001208 55%,#000b04 100%)"></div>
+          <div class="wcard-overlay"></div>
+          <div class="wcard-info">
+            <div class="wcard-num">03 — 2023</div>
+            <div class="wcard-title">EPOCH<br>STUDIOS</div>
+            <div class="wcard-tags">
+              <span class="wtag">Development</span>
+              <span class="wtag">CMS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sec-cta-row" data-reveal>
+        <a href="work.html" class="sec-cta-btn">
+          <span class="cta-dot"></span>
+          <span class="cta-label">See all 62 websites</span>
+          <span class="cta-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- [04] ABOUT -->
+  <section id="about">
+    <div class="about-grid">
+      <div>
+        <div class="sec-eyebrow" data-reveal>Who We Are</div>
+        <pre id="ascii-pre" aria-label="Animated ASCII portrait"></pre>
+      </div>
+      <div>
+        <div class="sec-eyebrow" data-reveal="d1">The Belief</div>
+        <div class="manifesto-text" id="manifesto">
+          We are a two-person studio. We build code-based websites — not apps, not brands, not social content. Just websites. Built from scratch, in code, with the kind of attention that makes your visitors slow down and your competitors wonder how you did it. Most agencies treat a website as a deliverable. We treat it as your single most important business asset. That distinction is everything.
+        </div>
+        <div class="about-stats" data-reveal="d2">
+          <div><div class="stat-num">8+</div><div class="stat-label">Years Building</div></div>
+          <div><div class="stat-num">62</div><div class="stat-label">Websites Shipped</div></div>
+          <div><div class="stat-num">100%</div><div class="stat-label">Custom Code</div></div>
+        </div>
+        <div class="sec-cta-row" data-reveal>
+          <a href="studio.html" class="sec-cta-btn">
+            <span class="cta-dot"></span>
+            <span class="cta-label">Our philosophy &amp; values</span>
+            <span class="cta-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- [05] PROCESS -->
+  <section id="process-section">
+    <div class="process-header">
+      <div class="sec-eyebrow" data-reveal>How It Works</div>
+      <h2 class="sec-title" data-reveal>From brief<br>to browser.</h2>
+    </div>
+    <div id="process-wrapper">
+      <div id="process-sticky">
+        <div id="process-track">
+          <div class="pstep" data-step="0">
+            <svg class="pstep-arc" viewBox="0 0 58 58"><circle cx="29" cy="29" r="23" fill="none" stroke="rgba(245,240,232,.07)" stroke-width="2"/><circle class="arc-circle" cx="29" cy="29" r="23" fill="none" stroke="var(--orange)" stroke-width="2" stroke-dasharray="144.5" stroke-dashoffset="144.5" stroke-linecap="round" transform="rotate(-90 29 29)"/></svg>
+            <div class="pstep-num">01</div>
+            <div class="pstep-title">Understand</div>
+            <div class="pstep-body">We learn your business, your users, and what winning looks like for you. No generic forms. Real conversations about what actually matters.</div>
+            <div class="pstep-tag">Understandy · Strategy</div>
+            <div class="pstep-progress"></div>
+          </div>
+          <div class="pstep" data-step="1">
+            <svg class="pstep-arc" viewBox="0 0 58 58"><circle cx="29" cy="29" r="23" fill="none" stroke="rgba(245,240,232,.07)" stroke-width="2"/><circle class="arc-circle" cx="29" cy="29" r="23" fill="none" stroke="var(--orange)" stroke-width="2" stroke-dasharray="144.5" stroke-dashoffset="144.5" stroke-linecap="round" transform="rotate(-90 29 29)"/></svg>
+            <div class="pstep-num">02</div>
+            <div class="pstep-title">Architect</div>
+            <div class="pstep-body">Structure before style. We plan every page, every flow, every interaction before writing the first line of code. No surprises later.</div>
+            <div class="pstep-tag">Structure · Flow · Logic</div>
+            <div class="pstep-progress"></div>
+          </div>
+          <div class="pstep" data-step="2">
+            <svg class="pstep-arc" viewBox="0 0 58 58"><circle cx="29" cy="29" r="23" fill="none" stroke="rgba(245,240,232,.07)" stroke-width="2"/><circle class="arc-circle" cx="29" cy="29" r="23" fill="none" stroke="var(--orange)" stroke-width="2" stroke-dasharray="144.5" stroke-dashoffset="144.5" stroke-linecap="round" transform="rotate(-90 29 29)"/></svg>
+            <div class="pstep-num">03</div>
+            <div class="pstep-title">Craft</div>
+            <div class="pstep-body">Obsession lives here. We build entirely in code from day one — no handoffs, no "translation". What you see in the browser is the real thing.</div>
+            <div class="pstep-tag">Code · Animate · Refine</div>
+            <div class="pstep-progress"></div>
+          </div>
+          <div class="pstep" data-step="3">
+            <svg class="pstep-arc" viewBox="0 0 58 58"><circle cx="29" cy="29" r="23" fill="none" stroke="rgba(245,240,232,.07)" stroke-width="2"/><circle class="arc-circle" cx="29" cy="29" r="23" fill="none" stroke="var(--orange)" stroke-width="2" stroke-dasharray="144.5" stroke-dashoffset="144.5" stroke-linecap="round" transform="rotate(-90 29 29)"/></svg>
+            <div class="pstep-num">04</div>
+            <div class="pstep-title">Launch</div>
+            <div class="pstep-body">Going live is the beginning. We handle deployment, performance monitoring, and keep your site sharp as your business scales.</div>
+            <div class="pstep-tag">Deploy · Monitor · Evolve</div>
+            <div class="pstep-progress"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- [06] SERVICES -->
+  <section id="services">
+    <div class="services-inner">
+      <div class="sec-eyebrow" data-reveal>What You Get</div>
+      <h2 class="sec-title" data-reveal>One product.<br>Done right.</h2>
+      <div class="services-grid" id="home-services-grid">
+        <div class="scard" data-tilt><div class="scard-num">01</div><div class="scard-icon">⟨/⟩</div><div class="scard-name">Custom Website</div><div class="scard-desc">No templates. No page builders. Every line of code written for you — and only you.</div><span class="scard-arrow">↗</span></div>
+        <div class="scard" data-tilt><div class="scard-num">02</div><div class="scard-icon">◎</div><div class="scard-name">Motion & Interactions</div><div class="scard-desc">Scroll animations, hover states, page transitions — all authored by hand. The details that make people say "how did they do that?"</div><span class="scard-arrow">↗</span></div>
+        <div class="scard" data-tilt><div class="scard-num">03</div><div class="scard-icon">⬡</div><div class="scard-name">Speed & SEO</div><div class="scard-desc">Every site we ship scores above 95 on performance. Fast, optimised, and built to rank. Beautiful and fast — not a trade-off.</div><span class="scard-arrow">↗</span></div>
+        <div class="scard" data-tilt><div class="scard-num">04</div><div class="scard-icon">✦</div><div class="scard-name">Ongoing Care</div><div class="scard-desc">Your website is a product. We keep it sharp, updated, and growing — long after launch day.</div><span class="scard-arrow">↗</span></div>
+      </div>
+      <div class="sec-cta-row" data-reveal>
+        <a href="services.html" class="sec-cta-btn">
+          <span class="cta-dot"></span>
+          <span class="cta-label">Everything that's included</span>
+          <span class="cta-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- [07] TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="testi-inner">
+      <div class="sec-eyebrow" style="justify-content:center" data-reveal>What Clients Say</div>
+      <h2 class="sec-title" style="text-align:center" data-reveal>The websites.<br>The results.</h2>
+      <div class="tquote-grid" data-reveal>
+        <div class="tquote-card">
+          <div class="tquote-stars">★★★★★</div>
+          <p class="tquote-text">"Our old site was an embarrassment. PEAKMEDIA built something we show off at every pitch. Conversions went up 280% in 60 days."</p>
+          <div class="tquote-meta"><span class="tquote-name">CEO</span><span class="tquote-co">Zestify Foods</span></div>
+        </div>
+        <div class="tquote-card">
+          <div class="tquote-stars">★★★★★</div>
+          <p class="tquote-text">"They said our brief was too safe. They were right. The site they built has won us clients we had no business winning."</p>
+          <div class="tquote-meta"><span class="tquote-name">Founder</span><span class="tquote-co">Inkraft Studio</span></div>
+        </div>
+        <div class="tquote-card">
+          <div class="tquote-stars">★★★★★</div>
+          <p class="tquote-text">"Every founder who visits our site asks who built it. That question alone has been worth ten times what we paid."</p>
+          <div class="tquote-meta"><span class="tquote-name">Co-Founder</span><span class="tquote-co">Vaultex</span></div>
+        </div>
+        <div class="tquote-card">
+          <div class="tquote-stars">★★★★★</div>
+          <p class="tquote-text">"We've worked with three agencies before. None of them understood that a website is a product, not a brochure. PEAKMEDIA did."</p>
+          <div class="tquote-meta"><span class="tquote-name">CPO</span><span class="tquote-co">Kratos Ventures</span></div>
+        </div>
+        <div class="tquote-card">
+          <div class="tquote-stars">★★★★★</div>
+          <p class="tquote-text">"They pushed back on two of our ideas and were right both times. That honesty is rare. The website is rarer."</p>
+          <div class="tquote-meta"><span class="tquote-name">Brand Director</span><span class="tquote-co">Lumenary</span></div>
+        </div>
+        <div class="tquote-card">
+          <div class="tquote-stars">★★★★★</div>
+          <p class="tquote-text">"PEAKMEDIA doesn't make websites. They build digital reputations. Ours has never been stronger."</p>
+          <div class="tquote-meta"><span class="tquote-name">MD</span><span class="tquote-co">Orion Capital</span></div>
+        </div>
+      </div>
+      <div class="sec-cta-row" data-reveal>
+        <a href="founders.html" class="sec-cta-btn">
+          <span class="cta-dot"></span>
+          <span class="cta-label">Meet the people behind the work</span>
+          <span class="cta-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- [08] CTA -->
+  <section id="cta">
+    <div class="cta-ghost" aria-hidden="true">LET'S BUILD</div>
+    <div class="cta-inner">
+      <p class="cta-eyebrow">Ready?</p>
+      <h2 class="cta-heading">Start a<br><span style="color:var(--orange)">Project.</span></h2>
+      <p class="cta-sub">Tell us about your website.<br>We'll tell you honestly if we're the right fit.</p>
+      <div class="blob-wrap">
+        <div class="blob-bg" aria-hidden="true"></div>
+        <a href="mailto:hello@peakmedia.studio" class="cta-btn" id="main-cta">Start a Project</a>
+      </div>
+      <a href="mailto:hello@peakmedia.studio" class="cta-email">hello@peakmedia.studio</a>
+    </div>
+  </section>
+
+  <!-- [09] FOOTER -->
+  <footer>
+    <canvas id="footer-canvas"></canvas>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">PEAKMEDIA<span class="footer-brand-sub">Studio</span></div>
+        <p class="footer-tagline">A two-person studio that builds<br>custom code-based websites. Nothing else.</p>
+        <div class="footer-social">
+          <a href="#" class="fsoc">IG</a>
+          <a href="#" class="fsoc">TW</a>
+          <a href="#" class="fsoc">DR</a>
+          <a href="#" class="fsoc">LI</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-head">Work</div>
+        <ul class="footer-links">
+          <li><a href="#">Folio Collective</a></li>
+          <li><a href="#">Vault Digital</a></li>
+          <li><a href="#">Epoch Studios</a></li>
+          <li><a href="#">All Projects →</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-head">Studio</div>
+        <ul class="footer-links">
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Process</a></li>
+          <li><a href="#">Journal</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-head">Connect</div>
+        <ul class="footer-links">
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Twitter / X</a></li>
+          <li><a href="#">Dribbble</a></li>
+          <li><a href="#">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 PEAKMEDIA Studio. All rights reserved.</span>
+      <span class="footer-credit">Built with <span>obsession</span>.</span>
+    </div>
+  </footer>
+
+  <!-- GSAP must load BEFORE your JS files -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <!-- Your JS files — order matters -->
+  <script src="assets/js/cursor.js"></script>
+  <script src="assets/js/hero.js"></script>
+  <script src="assets/js/ticker.js"></script>
+  <script src="assets/js/magnetic.js"></script>
+  <script src="assets/js/tilt.js"></script>
+  <script src="assets/js/ascii.js"></script>
+  <script src="assets/js/manifesto.js"></script>
+  <script src="assets/js/process.js"></script>
+  <script src="assets/js/testimonials.js"></script>
+  <script src="assets/js/cta.js"></script>
+  <script src="assets/js/footer.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/cta-buttons.js"></script>
+
+
+
+  <!-- Launch transition overlay -->
+  <div id="launch-overlay">
+    <div id="launch-circle"></div>
+    <div id="launch-words">
+      <div class="lw-word"><span class="lw-inner">What's</span></div>
+      <div class="lw-word"><span class="lw-inner">Coming.</span></div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var btn = document.getElementById('nav-teaser');
+    if(!btn) return;
+
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      var dest   = btn.getAttribute('href');
+      var rect   = btn.getBoundingClientRect();
+      var bx     = rect.left + rect.width  / 2;
+      var by     = rect.top  + rect.height / 2;
+
+      /* Diameter needed to cover full screen from btn position */
+      var diam = Math.ceil(
+        Math.sqrt(
+          Math.pow(Math.max(bx, innerWidth  - bx) * 2, 2) +
+          Math.pow(Math.max(by, innerHeight - by) * 2, 2)
+        )
+      ) * 2.2;
+
+      var ov  = document.getElementById('launch-overlay');
+      var cir = document.getElementById('launch-circle');
+      var wds = document.getElementById('launch-words');
+      var inners = wds.querySelectorAll('.lw-inner');
+
+      /* Position circle at button centre */
+      cir.style.width  = diam + 'px';
+      cir.style.height = diam + 'px';
+      cir.style.left   = bx + 'px';
+      cir.style.top    = by + 'px';
+
+      /* Show overlay */
+      ov.style.display = 'block';
+
+      /* 1. Shrink + fade button */
+      gsap.to(btn, {
+        scale: 0, opacity: 0, rotate: 180,
+        duration: 0.28, ease: 'back.in(2)'
+      });
+
+      /* 2. Burst circle expands */
+      gsap.to(cir, {
+        scale: 1,
+        duration: 0.65,
+        ease: 'expo.inOut',
+        delay: 0.1
+      });
+
+      /* 3. Words drop in after circle covers screen */
+      gsap.to(wds, {
+        opacity: 1,
+        duration: 0.01,
+        delay: 0.55
+      });
+      inners.forEach(function(el, i){
+        gsap.to(el, {
+          y: 0,
+          duration: 0.6,
+          delay: 0.58 + i * 0.1,
+          ease: 'expo.out'
+        });
+      });
+
+      /* 4. Words slam back up before navigate */
+      inners.forEach(function(el, i){
+        gsap.to(el, {
+          y: '-110%',
+          duration: 0.45,
+          delay: 1.1 + i * 0.06,
+          ease: 'expo.in'
+        });
+      });
+
+      /* 5. Navigate */
+      setTimeout(function(){
+        window.location.href = dest;
+      }, 1550);
+    });
+  })();
+  </script>
+
+
+  <script>
+  (function(){
+    var btn   = document.getElementById('nav-hamburger');
+    var menu  = document.getElementById('nav-mobile-menu');
+    var close = document.getElementById('nav-mobile-close');
+    if(!btn) return;
+    function openMenu(){
+      menu.classList.add('open');
+      btn.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu(){
+      menu.classList.remove('open');
+      btn.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    btn.addEventListener('click', openMenu);
+    if(close) close.addEventListener('click', closeMenu);
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', closeMenu);
+    });
+    // close on ESC
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape') closeMenu();
+    });
+  })();
+  </script>
+  <script src="assets/js/ambient.js"></script>
+</body>
+</html>

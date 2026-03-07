@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PEAKMEDIA — The Founders</title>
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&f[]=cabinet-grotesk@400,500,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/nav.css">
+<style>
+body { overflow-x:hidden; cursor:none; }
+
+/* ── CURTAIN ───────────────────────────────────── */
+#curtain {
+  position:fixed; inset:0; z-index:9000;
+  display:flex; align-items:center; justify-content:center;
+  pointer-events:none;
+}
+.c-half { position:absolute; top:0; bottom:0; width:50%; background:#0D0D0D; will-change:transform; }
+.c-half.l { left:0; } .c-half.r { right:0; }
+
+
+
+/* ── HERO — two fixed portrait cards ──────────── */
+#hero {
+  width:100%; height:100vh; height:100svh;
+  display:grid;
+  grid-template-columns: 1fr 2px 1fr;
+  position:relative; overflow:hidden;
+}
+
+/* The divider column */
+#hero-divider {
+  background:linear-gradient(to bottom, transparent 0%, #FF4D00 15%, #FF4D00 85%, transparent 100%);
+  position:relative;
+  filter:drop-shadow(0 0 6px rgba(255,77,0,.55));
+  z-index:10;
+}
+.div-spark {
+  position:absolute; left:50%; transform:translateX(-50%);
+  width:5px; height:5px; border-radius:50%;
+  background:#FF4D00; box-shadow:0 0 12px 4px rgba(255,77,0,.8);
+  animation:sparkY 3s ease-in-out infinite alternate;
+}
+@keyframes sparkY {
+  from{top:8%;opacity:.3;} 50%{opacity:1;} to{top:90%;opacity:.3;}
+}
+
+/* Each portrait card — NO size change on hover */
+.f-card {
+  position:relative; overflow:hidden; cursor:none;
+}
+
+/* ── HOW TO ADD YOUR PHOTO ────────────────────────
+   Replace .photo-bg with:
+   <img src="your-photo.jpg"
+        style="position:absolute;inset:0;width:100%;height:100%;
+               object-fit:cover;object-position:center top">
+   That's it. The overlays sit on top automatically.
+──────────────────────────────────────────────────── */
+.photo-bg {
+  position:absolute; inset:0;
+  /* Placeholder until real photo */
+  transition:transform 1s cubic-bezier(.23,1,.32,1);
+  will-change:transform;
+}
+.f-card:hover .photo-bg { transform:scale(1.03); }
+
+#card-m .photo-bg {
+  background:radial-gradient(ellipse 75% 85% at 50% 38%, #1e1560 0%, #0c0930 50%, #050318 100%);
+}
+#card-z .photo-bg {
+  background:radial-gradient(ellipse 75% 85% at 50% 38%, #3d1200 0%, #1e0800 50%, #0a0300 100%);
+}
+
+/* colour blobs — GPU only */
+.f-blob {
+  position:absolute; border-radius:50%;
+  filter:blur(58px); mix-blend-mode:screen; pointer-events:none;
+  animation:blobDrift ease-in-out infinite alternate;
+  will-change:transform;
+}
+@keyframes blobDrift { from{transform:translate(0,0) scale(1);} to{transform:translate(6%,8%) scale(1.07);} }
+#card-m .f-blob.a { width:55%;height:65%;top:2%;left:4%;background:#251480;opacity:.5;animation-duration:9s; }
+#card-m .f-blob.b { width:38%;height:48%;top:33%;left:36%;background:#0d0740;opacity:.35;animation-duration:13s;animation-direction:reverse; }
+#card-z .f-blob.a { width:55%;height:65%;top:2%;left:4%;background:#6e2500;opacity:.5;animation-duration:10s; }
+#card-z .f-blob.b { width:38%;height:48%;top:33%;left:36%;background:#3a1000;opacity:.35;animation-duration:14s;animation-direction:reverse; }
+
+/* Bottom gradient — always readable text */
+.f-overlay {
+  position:absolute; inset:0; z-index:2; pointer-events:none;
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,.92) 0%,
+    rgba(0,0,0,.55) 28%,
+    rgba(0,0,0,.1)  55%,
+    rgba(0,0,0,.28) 100%
+  );
+  /* Subtle orange border highlight on hover — premium feel */
+  transition:box-shadow .5s;
+}
+.f-card:hover .f-overlay {
+  box-shadow:inset 0 0 0 1px rgba(255,77,0,.22);
+}
+
+/* ── HUD text (bottom of each card) ────────────── */
+.f-hud {
+  position:absolute; bottom:3.5rem; z-index:5;
+  /* Hard width limit so text never overflows */
+  width:calc(50vw - 3rem);
+  max-width:380px;
+}
+#card-m .f-hud { left:3rem; }
+#card-z .f-hud { right:3rem; text-align:right; left:auto; }
+
+.f-tag {
+  font-family:'Clash Display',sans-serif; font-size:.54rem;
+  letter-spacing:.38em; text-transform:uppercase;
+  color:#FF4D00; margin-bottom:.6rem; opacity:.9;
+}
+.f-name {
+  font-family:'Clash Display',sans-serif; font-weight:700;
+  /* clamp: min 1.6rem, scales with viewport, max 3.8rem */
+  font-size:clamp(1.6rem, 3.2vw, 3.8rem);
+  letter-spacing:-.03em; line-height:.92;
+  color:#F5F0E8;
+}
+.f-rule {
+  height:2px; background:#FF4D00; margin-top:.85rem;
+  width:0;
+  transition:width .8s cubic-bezier(.77,0,.175,1) .2s;
+}
+#card-z .f-rule { margin-left:auto; }
+.f-quote {
+  font-family:'Cabinet Grotesk',sans-serif; font-size:.76rem;
+  color:rgba(245,240,232,.38); margin-top:.65rem;
+  line-height:1.5;
+  opacity:0; transform:translateY(6px);
+  transition:opacity .5s .38s, transform .5s .38s;
+}
+#card-z .f-quote { margin-left:auto; }
+.f-card:hover .f-rule  { width:3.5rem; }
+.f-card:hover .f-quote { opacity:1; transform:none; }
+
+/* Pills */
+.f-pill {
+  position:absolute; z-index:6;
+  background:rgba(8,8,8,.88); border:1px solid rgba(255,77,0,.2);
+  border-radius:3rem; padding:.32rem .82rem;
+  font-family:'Clash Display',sans-serif; font-size:.49rem;
+  font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+  color:#F5F0E8; backdrop-filter:blur(6px); white-space:nowrap;
+  opacity:0; transform:translateY(6px);
+  transition:opacity .32s, transform .32s;
+  pointer-events:none;
+}
+.f-pill b { color:#FF4D00; margin-right:.22em; }
+.f-pill.d1{transition-delay:.00s}
+.f-pill.d2{transition-delay:.08s}
+.f-pill.d3{transition-delay:.16s}
+.f-card:hover .f-pill { opacity:1; transform:none; }
+
+/* Scroll badge */
+#scroll-badge {
+  position:absolute; bottom:1.8rem; left:50%; transform:translateX(-50%);
+  z-index:12; display:flex; flex-direction:column; align-items:center; gap:.4rem;
+  opacity:0; animation:sbFade 1s ease 3.2s forwards; pointer-events:none;
+}
+@keyframes sbFade{to{opacity:.45;}}
+.sb-line { width:1px;height:38px;background:linear-gradient(to bottom,transparent,#FF4D00);animation:sbPulse 1.5s ease-in-out infinite; }
+@keyframes sbPulse{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.55)}}
+.sb-txt { font-size:.48rem;letter-spacing:.28em;color:#6B6560;text-transform:uppercase; }
+
+/* ── PROGRESS DOTS ─────────────────────────────── */
+#pdots {
+  position:fixed; right:1.8rem; top:50%; transform:translateY(-50%);
+  z-index:200; display:flex; flex-direction:column; gap:.6rem;
+}
+.pdot { width:5px;height:5px;border-radius:50%;background:rgba(245,240,232,.18);transition:background .3s,transform .3s;cursor:none; }
+.pdot.on { background:#FF4D00;transform:scale(1.5); }
+
+/* Ripple */
+#ripple {
+  position:fixed;top:50%;left:50%;z-index:50;
+  border-radius:50%;pointer-events:none;
+  border:1.5px solid rgba(255,77,0,.45);
+  transform:translate(-50%,-50%) scale(0);
+}
+#ripple.pop { animation:ripPop .65s cubic-bezier(.22,.61,.36,1) forwards; }
+@keyframes ripPop{
+  0%  {transform:translate(-50%,-50%) scale(0);opacity:1;width:8px;height:8px;}
+  100%{transform:translate(-50%,-50%) scale(1);opacity:0;width:150vw;height:150vw;}
+}
+
+/* ── SCROLL DRIVER ─────────────────────────────── */
+#scroll-driver {
+  padding-top: 0; height:300vh; position:relative; }
+#sticky-wrap   { position:sticky;top:0;height:100vh;overflow:hidden;background:#0D0D0D;display:flex;align-items:center; }
+
+/* ── UNIVERSE CARDS ────────────────────────────── */
+.ucard {
+  width:100%;
+  position:absolute;inset:0;
+  display:flex;align-items:center;
+  padding:0 5vw;
+  opacity:0;pointer-events:none;
+  transition:opacity .42s;
+  overflow:hidden;
+}
+.ucard.on { opacity:1;pointer-events:auto; }
+
+#uc-m { background:radial-gradient(ellipse 50% 55% at 12% 50%,rgba(55,35,200,.06) 0%,transparent 65%); }
+#uc-z { background:radial-gradient(ellipse 50% 55% at 88% 50%,rgba(255,77,0,.07) 0%,transparent 65%); }
+#uc-b {
+  background:
+    radial-gradient(ellipse 38% 48% at 22% 50%,rgba(100,100,255,.05) 0%,transparent 60%),
+    radial-gradient(ellipse 38% 48% at 78% 50%,rgba(255,77,0,.05) 0%,transparent 60%);
+}
+
+/* Layout */
+.uc-l { flex:1;padding-right:4vw;min-width:0; }
+.uc-r { flex:0 0 min(340px,32vw);position:relative;height:min(440px,65vh);min-width:0; }
+
+/* Portrait panel */
+.pph {
+  position:absolute;inset:0;border-radius:12px;overflow:hidden;
+}
+.pph-bg { position:absolute;inset:0;animation:pphPulse 7s ease-in-out infinite alternate; }
+#pph-m .pph-bg { background:radial-gradient(ellipse 90% 100% at 50% 38%,#1a1050 0%,#07051e 55%,#030211 100%); }
+#pph-z .pph-bg { background:radial-gradient(ellipse 90% 100% at 50% 38%,#3d1400 0%,#1a0800 55%,#0a0300 100%); }
+@keyframes pphPulse{from{filter:brightness(.88);}to{filter:brightness(1.1);}}
+.pph-blob {
+  position:absolute;border-radius:50%;filter:blur(40px);mix-blend-mode:screen;opacity:.42;
+  animation:blobDrift ease-in-out infinite alternate;
+}
+.pph-sil { position:absolute;inset:0; }
+.pph-sil::before {
+  content:'';position:absolute;
+  width:40%;height:46%;top:10%;left:50%;transform:translateX(-50%);
+  border-radius:50% 50% 48% 52%/56% 56% 44% 44%;
+  background:rgba(0,0,0,.42);
+}
+.pph-sil::after {
+  content:'';position:absolute;
+  width:72%;height:32%;bottom:-4%;left:50%;transform:translateX(-50%);
+  border-radius:50% 50% 0 0;background:rgba(0,0,0,.48);
+}
+.pph-vig {
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 80% at 50% 50%,transparent 26%,rgba(0,0,0,.88) 100%);
+}
+
+/* Stat chips */
+.sc {
+  position:absolute;z-index:5;
+  background:rgba(8,8,8,.9);border:1px solid rgba(255,77,0,.18);
+  border-radius:10px;padding:.8rem 1.1rem;backdrop-filter:blur(8px);
+  opacity:0;transform:translateY(10px);
+  transition:opacity .5s,transform .5s;
+}
+.sc.show{opacity:1;transform:none;}
+.sc-n{font-family:'Clash Display',sans-serif;font-weight:700;font-size:1.55rem;letter-spacing:-.04em;color:#FF4D00;line-height:1;}
+.sc-l{font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;color:#6B6560;margin-top:.18rem;}
+
+/* Text inside cards */
+.uc-eye {
+  font-family:'Clash Display',sans-serif;font-size:.52rem;letter-spacing:.4em;text-transform:uppercase;
+  color:#FF4D00;margin-bottom:1.1rem;display:flex;align-items:center;gap:.65rem;
+}
+.uc-eye::before{content:'';width:1.4rem;height:1px;background:#FF4D00;}
+.uc-name {
+  font-family:'Clash Display',sans-serif;font-weight:700;
+  /* Strict clamp — won't overflow any screen */
+  font-size:clamp(2.2rem, 4.5vw, 5rem);
+  letter-spacing:-.04em;line-height:.88;margin-bottom:1.1rem;
+}
+.uc-role {
+  font-size:.56rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  color:#FF4D00;padding-bottom:1.2rem;margin-bottom:1.6rem;
+  border-bottom:1px solid rgba(255,77,0,.1);
+  /* wrap so it never overflows */
+  white-space:normal;word-break:break-word;
+}
+.uc-bio {
+  font-family:'Cabinet Grotesk',sans-serif;font-size:.88rem;
+  line-height:1.75;color:rgba(245,240,232,.55);margin-bottom:1.8rem;
+}
+.traits{display:flex;flex-direction:column;gap:.45rem;}
+.t-row{display:flex;align-items:center;gap:.75rem;}
+.t-lbl{font-family:'Clash Display',sans-serif;font-size:.48rem;letter-spacing:.16em;text-transform:uppercase;color:#6B6560;width:88px;flex-shrink:0;}
+.t-track{flex:1;height:2px;background:rgba(245,240,232,.06);border-radius:2px;overflow:hidden;}
+.t-fill{height:100%;background:#FF4D00;border-radius:2px;width:0;transition:width 1.4s cubic-bezier(.23,1,.32,1);}
+.t-num{font-family:'Clash Display',sans-serif;font-size:.52rem;color:#FF4D00;width:24px;text-align:right;flex-shrink:0;}
+
+/* ── BRIDGE CARD ───────────────────────────────── */
+.bridge-wrap {
+  width:100%;max-width:720px;
+  margin:0 auto;text-align:center;
+  padding:5rem 2rem 2rem;
+  position:relative;z-index:2;
+  overflow-y:auto;
+  max-height:100vh;
+}
+.bridge-title {
+  font-family:'Clash Display',sans-serif;font-weight:700;
+  /* tight clamp so it fits on any screen */
+  font-size:clamp(1.8rem, 3.5vw, 4rem);
+  letter-spacing:-.04em;line-height:.92;margin-bottom:1.2rem;
+}
+.bridge-title .na{color:#8080ff;}
+.bridge-title .nb{color:#FF4D00;}
+.bridge-sub {
+  font-family:'Cabinet Grotesk',sans-serif;font-size:.88rem;
+  color:rgba(245,240,232,.48);line-height:1.72;
+  max-width:520px;margin:0 auto 1.6rem;
+}
+
+/* Timeline */
+.tl{display:flex;flex-direction:column;gap:0;text-align:left;position:relative;max-width:560px;margin:0 auto;}
+.tl::before{content:'';position:absolute;left:14px;top:4px;bottom:4px;width:1px;background:linear-gradient(to bottom,transparent,#FF4D00 8%,#FF4D00 92%,transparent);}
+.tl-row{display:flex;gap:1.2rem;padding-bottom:1.2rem;opacity:0;transform:translateX(-12px);transition:opacity .6s,transform .6s;}
+.tl-row.show{opacity:1;transform:none;}
+.tl-dot{width:28px;height:28px;flex-shrink:0;border-radius:50%;border:1px solid rgba(255,77,0,.3);background:#0D0D0D;display:flex;align-items:center;justify-content:center;font-family:'Clash Display',sans-serif;font-size:.44rem;color:#FF4D00;letter-spacing:.06em;position:relative;z-index:1;}
+.tl-yr{font-family:'Clash Display',sans-serif;font-size:.5rem;letter-spacing:.24em;color:#FF4D00;margin-bottom:.28rem;}
+.tl-txt{font-family:'Cabinet Grotesk',sans-serif;font-size:.82rem;color:rgba(245,240,232,.5);line-height:1.58;}
+.tl-txt strong{color:#F5F0E8;font-weight:600;}
+
+/* ── FOOTER ────────────────────────────────────── */
+#pfoot{
+  position:relative;z-index:2;padding:3.5rem 4rem;padding-top:6rem;
+  background:#0a0a0a;border-top:1px solid rgba(245,240,232,.05);
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:1.5rem;
+}
+.pf-logo{font-family:'Clash Display',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.2em;color:#F5F0E8;text-decoration:none;}
+.pf-txt{font-family:'Clash Display',sans-serif;font-size:.54rem;letter-spacing:.24em;text-transform:uppercase;color:#6B6560;}
+.pf-cta{font-family:'Clash Display',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:#FF4D00;text-decoration:none;padding:.68rem 1.7rem;border-radius:4rem;transition:transform .25s,box-shadow .3s;}
+.pf-cta:hover{transform:scale(1.04);box-shadow:0 0 24px rgba(255,77,0,.3);}
+
+/* ── PRE-CURTAIN CANVAS ──────────────────────────── */
+#precurtain-canvas {
+  position:fixed; inset:0; width:100%; height:100%;
+  z-index:9500; pointer-events:none; background:#0D0D0D;
+}
+#precurtain-label {
+  position:fixed; top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  z-index:9600; pointer-events:none;
+  text-align:center;
+}
+.pcl-top {
+  font-family:'Clash Display',sans-serif; font-weight:200;
+  font-size:clamp(.5rem,1.2vw,1rem); letter-spacing:.6em;
+  text-transform:uppercase; color:rgba(245,240,232,.3);
+  margin-bottom:1.2rem;
+  opacity:0; transform:translateY(8px);
+  transition:opacity .6s ease, transform .6s ease;
+}
+.pcl-main {
+  font-family:'Clash Display',sans-serif; font-weight:700;
+  font-size:clamp(2rem,5vw,6rem); letter-spacing:-.04em; line-height:.9;
+  color:#F5F0E8; overflow:hidden;
+}
+.pcl-word {
+  display:inline-block; overflow:hidden;
+}
+.pcl-word-inner {
+  display:inline-block;
+  transform:translateY(105%);
+  transition:transform .75s cubic-bezier(.77,0,.175,1);
+}
+.pcl-word-inner.accent { color:#FF4D00; }
+.pcl-line {
+  width:0; height:1px; background:#FF4D00;
+  margin:1.2rem auto 0;
+  transition:width .8s cubic-bezier(.77,0,.175,1) .6s;
+}
+</style>
+</head>
+<body>
+<div id="cursor"></div>
+
+<nav id="nav" style="background:rgba(13,13,13,.92);backdrop-filter:blur(12px)">
+  <a href="index.html" class="nav-logo">PEAKMEDIA<span class="nav-logo-sub">Studio</span></a>
+  <div class="nav-right">
+    <a href="work.html" class="nav-link">Work</a>
+    <a href="services.html" class="nav-link">Services</a>
+    <a href="studio.html" class="nav-link">Studio</a>
+    <a href="founders.html" class="nav-link" style="color:#FF4D00">Founders</a>
+    <a href="coming-soon.html" class="nav-teaser" id="nav-teaser">
+      <span class="nt-ring"></span>
+      <span class="nt-ring nt-ring2"></span>
+      <span class="nt-dot"></span>
+      <span class="nt-label">What's Coming</span>
+      <span class="nt-arrow">↗</span>
+    </a>
+    <a href="contact.html" class="nav-cta">Start a Project</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+  <!-- Mobile menu -->
+  <div class="nav-mobile-menu" id="nav-mobile-menu">
+    <span class="nav-mobile-close" id="nav-mobile-close">✕</span>
+    <a href="index.html">Home</a>
+    <a href="work.html">Work</a>
+    <a href="services.html">Services</a>
+    <a href="studio.html">Studio</a>
+    <a href="founders.html">Founders</a>
+    <a href="contact.html">Start a Project</a>
+  </div>
+
+
+<canvas id="precurtain-canvas"></canvas>
+<div id="precurtain-label">
+  <div class="pcl-top">PEAKMEDIA Studio</div>
+  <div class="pcl-main">
+    <span class="pcl-word"><span class="pcl-word-inner">The</span></span>
+    &nbsp;
+    <span class="pcl-word"><span class="pcl-word-inner accent">Founders</span></span>
+  </div>
+  <div class="pcl-line" id="pcl-line"></div>
+</div>
+
+<div id="curtain">
+  <div class="c-half l" id="cl"></div>
+  <div class="c-half r" id="cr"></div>
+</div>
+
+<div id="pdots">
+  <div class="pdot on" data-i="0"></div>
+  <div class="pdot"    data-i="1"></div>
+  <div class="pdot"    data-i="2"></div>
+</div>
+<div id="ripple"></div>
+
+<!-- ═══ HERO — two static portrait cards + divider ═══
+     To use a real photo, replace the .photo-bg div inside
+     .photo-wrap with an <img> tag. Example:
+     <img src="marcus.jpg" style="position:absolute;inset:0;
+      width:100%;height:100%;object-fit:cover;object-position:center top">
+-->
+<section id="hero">
+
+  <div class="f-card" id="card-m">
+    <div class="photo-bg">
+      <div class="f-blob a"></div>
+      <div class="f-blob b"></div>
+    </div>
+    <div class="f-overlay"></div>
+    <div class="f-hud">
+      <div class="f-tag">Co-Founder · Developer</div>
+      <div class="f-name">Marcus Cole</div>
+      <div class="f-rule"></div>
+      <div class="f-quote">"The browser is my only design tool."</div>
+    </div>
+    <div class="f-pill d1" style="top:23%;left:6%"><b>8yr</b> Craft</div>
+    <div class="f-pill d2" style="top:37%;left:4%"><b>340k+</b> Lines Written</div>
+    <div class="f-pill d3" style="top:51%;left:6%"><b>∞</b> Detail</div>
+  </div>
+
+  <div id="hero-divider">
+    <div class="div-spark"></div>
+  </div>
+
+  <div class="f-card" id="card-z">
+    <div class="photo-bg">
+      <div class="f-blob a"></div>
+      <div class="f-blob b"></div>
+    </div>
+    <div class="f-overlay"></div>
+    <div class="f-hud">
+      <div class="f-tag">Co-Founder · Strategy</div>
+      <div class="f-name">Zara Nouri</div>
+      <div class="f-rule"></div>
+      <div class="f-quote">"A great website pays for itself."</div>
+    </div>
+    <div class="f-pill d1" style="top:23%;right:6%"><b>62</b> Projects</div>
+    <div class="f-pill d2" style="top:37%;right:4%"><b>3×</b> Conversion</div>
+    <div class="f-pill d3" style="top:51%;right:6%"><b>0</b> Average</div>
+  </div>
+
+  <div id="scroll-badge">
+    <div class="sb-line"></div>
+    <span class="sb-txt">Scroll to explore</span>
+  </div>
+</section>
+
+<!-- ═══ SCROLL DRIVER ═══ -->
+<div id="scroll-driver">
+  <div id="sticky-wrap">
+
+    <!-- CARD 0 — Marcus -->
+    <div class="ucard on" id="uc-m">
+      <div class="uc-l">
+        <div class="uc-eye">Founder One</div>
+        <div class="uc-name">Marcus Cole</div>
+        <div class="uc-role">Lead Developer · Interaction Designer · Code Purist</div>
+        <p class="uc-bio">Marcus wrote his first website at 14. Six years at agencies taught him exactly one thing: most studios don't actually care about the code. They care about the invoice. He walked out mid-meeting and started PEAKMEDIA. Every website since has been built in code, from scratch, by him — and it will stay that way.</p>
+        <div class="traits" id="tr-m">
+          <div class="t-row"><span class="t-lbl">Front-End</span><div class="t-track"><div class="t-fill" data-w="96"></div></div><span class="t-num">96</span></div>
+          <div class="t-row"><span class="t-lbl">Animation</span><div class="t-track"><div class="t-fill" data-w="91"></div></div><span class="t-num">91</span></div>
+          <div class="t-row"><span class="t-lbl">Performance</span><div class="t-track"><div class="t-fill" data-w="88"></div></div><span class="t-num">88</span></div>
+          <div class="t-row"><span class="t-lbl">Front-End</span><div class="t-track"><div class="t-fill" data-w="85"></div></div><span class="t-num">85</span></div>
+          <div class="t-row"><span class="t-lbl">Obsession</span><div class="t-track"><div class="t-fill" data-w="100"></div></div><span class="t-num">∞</span></div>
+        </div>
+      </div>
+      <div class="uc-r">
+        <div class="pph" id="pph-m">
+          <div class="pph-bg"></div>
+          <div class="pph-blob" style="width:56%;height:60%;top:3%;left:3%;background:#251480;animation-duration:9s;"></div>
+          <div class="pph-blob" style="width:40%;height:50%;top:33%;left:33%;background:#0d0740;animation-duration:13s;animation-direction:reverse;"></div>
+          <div class="pph-sil"></div>
+          <div class="pph-vig"></div>
+        </div>
+        <div class="sc" style="top:.9rem;right:.7rem"  id="sc-m1"><div class="sc-n">340k</div><div class="sc-l">Lines of CSS</div></div>
+        <div class="sc" style="bottom:.9rem;left:.7rem" id="sc-m2"><div class="sc-n">8yr</div><div class="sc-l">In the craft</div></div>
+      </div>
+    </div>
+
+    <!-- CARD 1 — Zara -->
+    <div class="ucard" id="uc-z">
+      <div class="uc-l">
+        <div class="uc-eye">Founder Two</div>
+        <div class="uc-name">Zara Nouri</div>
+        <div class="uc-role">Strategy Lead · Web Performance · Client Champion</div>
+        <p class="uc-bio">Zara spent years watching ambitious businesses pour serious money into websites that looked fine and did nothing. She joined Marcus with one condition: every website we build must be measurably better for the client's business. She defines what winning looks like. Marcus builds it. In 62 websites, they have never missed that target.</p>
+        <div class="traits" id="tr-z">
+          <div class="t-row"><span class="t-lbl">Strategy</span><div class="t-track"><div class="t-fill" data-w="98"></div></div><span class="t-num">98</span></div>
+          <div class="t-row"><span class="t-lbl">UX Research</span><div class="t-track"><div class="t-fill" data-w="93"></div></div><span class="t-num">93</span></div>
+          <div class="t-row"><span class="t-lbl">Conversion</span><div class="t-track"><div class="t-fill" data-w="95"></div></div><span class="t-num">95</span></div>
+          <div class="t-row"><span class="t-lbl">Brand Voice</span><div class="t-track"><div class="t-fill" data-w="89"></div></div><span class="t-num">89</span></div>
+          <div class="t-row"><span class="t-lbl">Directness</span><div class="t-track"><div class="t-fill" data-w="100"></div></div><span class="t-num">∞</span></div>
+        </div>
+      </div>
+      <div class="uc-r">
+        <div class="pph" id="pph-z">
+          <div class="pph-bg"></div>
+          <div class="pph-blob" style="width:56%;height:60%;top:3%;left:3%;background:#6e2500;animation-duration:10s;"></div>
+          <div class="pph-blob" style="width:40%;height:50%;top:33%;left:33%;background:#3a1000;animation-duration:14s;animation-direction:reverse;"></div>
+          <div class="pph-sil"></div>
+          <div class="pph-vig"></div>
+        </div>
+        <div class="sc" style="top:.9rem;left:.7rem"    id="sc-z1"><div class="sc-n">3×</div><div class="sc-l">Avg conversion</div></div>
+        <div class="sc" style="bottom:.9rem;right:.7rem" id="sc-z2"><div class="sc-n">62</div><div class="sc-l">Projects</div></div>
+      </div>
+    </div>
+
+    <!-- CARD 2 — Bridge -->
+    <div class="ucard" id="uc-b">
+      <div class="bridge-wrap">
+        <div class="uc-eye" style="justify-content:center">The Partnership</div>
+        <div class="bridge-title"><span class="na">Built in</span> <span class="nb">code.</span></div>
+        <p class="bridge-sub">Marcus writes the code. Zara makes sure every line of it serves the business.<br>62 websites. Zero templates. Zero Webflow. Zero WordPress. Built to perform — not just to impress.</p>
+        <div class="tl" id="tl">
+          <div class="tl-row"><div class="tl-dot">16</div><div><div class="tl-yr">2016</div><div class="tl-txt"><strong>Marcus quits</strong> his third agency job. The reason: they switched to Webflow. He couldn't. First client pays ₹65,000 for a fully custom-coded site that wins an Awwwards honorable mention.</div></div></div>
+          <div class="tl-row"><div class="tl-dot">18</div><div><div class="tl-yr">2018</div><div class="tl-txt"><strong>Zara cold emails</strong> Marcus. He ignores it. She follows up four times. He responds on the fifth. The website they build triples their client's inbound inquiries in 60 days.</div></div></div>
+          <div class="tl-row"><div class="tl-dot">19</div><div><div class="tl-yr">2019</div><div class="tl-txt"><strong>PEAKMEDIA is registered.</strong> Two people. One rule: never ship something average.</div></div></div>
+          <div class="tl-row"><div class="tl-dot">24</div><div><div class="tl-yr">2024</div><div class="tl-txt"><strong>Still two people.</strong> 62 custom-coded websites. Zero templates used. Zero regrets. Bookings open for Q3 2025.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="pfoot">
+  <a href="index.html" class="pf-logo">PEAKMEDIA<span class="nav-logo-sub">Studio</span></a>
+  <span class="pf-txt">Two people. One obsession.</span>
+  <a href="contact.html" class="pf-cta">Start a Project</a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="assets/js/cursor.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+initCursor();
+
+/* ── PRE-CURTAIN CANVAS + CURTAIN SEQUENCE ── */
+(function(){
+  var pcan = document.getElementById('precurtain-canvas');
+  var pc   = pcan.getContext('2d');
+  var W, H;
+  function rsz(){ W=pcan.width=innerWidth; H=pcan.height=innerHeight; }
+  rsz(); window.addEventListener('resize',rsz,{passive:true});
+
+  var pts=[], t=0, N=55;
+  for(var i=0;i<N;i++) pts.push({
+    x:Math.random()*innerWidth, y:Math.random()*innerHeight,
+    vx:(Math.random()-.5)*1.4, vy:(Math.random()-.5)*1.4,
+    r:.5+Math.random()*2, o:.06+Math.random()*.38,
+    hue:i%2===0?18:200
+  });
+  /* 8 flowing lines */
+  var flines=[];
+  for(var j=0;j<8;j++) flines.push({
+    pts:[{x:Math.random()*innerWidth,y:Math.random()*innerHeight}],
+    spd:.5+Math.random()*.7, ph:j
+  });
+
+  var canvasAlpha=1, stopCanvas=false, raf;
+  function drawPre(){
+    pc.clearRect(0,0,W,H);
+    pc.fillStyle='rgba(13,13,13,'+canvasAlpha+')';
+    pc.fillRect(0,0,W,H);
+    t+=.018;
+    /* flowing lines — two colours */
+    flines.forEach(function(ln,li){
+      var last=ln.pts[ln.pts.length-1];
+      ln.pts.push({x:last.x+Math.sin(t*ln.spd+li)*3,y:last.y+Math.cos(t*ln.spd*.8+li)*3});
+      if(ln.pts.length>65) ln.pts.shift();
+      if(last.x<0||last.x>W||last.y<0||last.y>H) ln.pts=[{x:Math.random()*W,y:Math.random()*H}];
+      if(ln.pts.length>1){
+        pc.beginPath(); pc.moveTo(ln.pts[0].x,ln.pts[0].y);
+        ln.pts.forEach(function(p){pc.lineTo(p.x,p.y);});
+        var hue=li<4?20:210;
+        pc.strokeStyle='hsla('+hue+',100%,55%,'+(0.04*canvasAlpha)+')';
+        pc.lineWidth=1; pc.stroke();
+      }
+    });
+    /* particles */
+    pts.forEach(function(p){
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0)p.x=W; if(p.x>W)p.x=0; if(p.y<0)p.y=H; if(p.y>H)p.y=0;
+      pc.beginPath(); pc.arc(p.x,p.y,p.r,0,Math.PI*2);
+      pc.fillStyle='hsla('+p.hue+',100%,65%,'+(p.o*canvasAlpha)+')';
+      pc.fill();
+    });
+    /* split radial — blue left, orange right */
+    var gl=pc.createRadialGradient(W*.28,H*.5,0,W*.28,H*.5,H*.55);
+    gl.addColorStop(0,'rgba(80,60,255,'+(0.06*canvasAlpha)+')');
+    gl.addColorStop(1,'rgba(80,60,255,0)');
+    pc.beginPath(); pc.arc(W*.28,H*.5,H*.55,0,Math.PI*2); pc.fillStyle=gl; pc.fill();
+    var gr=pc.createRadialGradient(W*.72,H*.5,0,W*.72,H*.5,H*.55);
+    gr.addColorStop(0,'rgba(255,77,0,'+(0.08*canvasAlpha)+')');
+    gr.addColorStop(1,'rgba(255,77,0,0)');
+    pc.beginPath(); pc.arc(W*.72,H*.5,H*.55,0,Math.PI*2); pc.fillStyle=gr; pc.fill();
+    /* centre vertical crack line */
+    var cv=pc.createLinearGradient(W/2,0,W/2,H);
+    cv.addColorStop(0,'rgba(255,77,0,0)');
+    cv.addColorStop(.2,'rgba(255,77,0,'+(0.35*canvasAlpha)+')');
+    cv.addColorStop(.8,'rgba(255,77,0,'+(0.35*canvasAlpha)+')');
+    cv.addColorStop(1,'rgba(255,77,0,0)');
+    pc.strokeStyle=cv; pc.lineWidth=1; pc.beginPath(); pc.moveTo(W/2,0); pc.lineTo(W/2,H); pc.stroke();
+    if(!stopCanvas) raf=requestAnimationFrame(drawPre);
+  }
+  raf=requestAnimationFrame(drawPre);
+
+  /* ── Animate text in immediately ── */
+  requestAnimationFrame(function(){
+    document.querySelector('.pcl-top').style.opacity='1';
+    document.querySelector('.pcl-top').style.transform='none';
+    setTimeout(function(){
+      document.querySelectorAll('.pcl-word-inner').forEach(function(el,i){
+        setTimeout(function(){el.style.transform='translateY(0)';},i*120);
+      });
+      document.getElementById('pcl-line').style.width='5rem';
+    },200);
+  });
+
+  /* ── After 1.4s: fade canvas → hand off to GSAP curtain ── */
+  var fadeS=null;
+  function fadePreCanvas(ts){
+    if(!fadeS) fadeS=ts;
+    var p=Math.min(1,(ts-fadeS)/500);
+    canvasAlpha=1-p;
+    if(p<1){ requestAnimationFrame(fadePreCanvas); }
+    else {
+      stopCanvas=true; cancelAnimationFrame(raf);
+      pcan.remove(); document.getElementById('precurtain-label').remove();
+      /* NOW run the curtain split — pre-curtain already showed THE FOUNDERS, so just tear */
+      pcan.style.display='none';
+      var tl=gsap.timeline();
+      tl.to('#cl',{x:'-101%',duration:.88,ease:'expo.inOut'})
+        .to('#cr',{x:'101%', duration:.88,ease:'expo.inOut'},'<')
+        .set('#curtain',{display:'none'});
+    }
+  }
+  setTimeout(function(){ requestAnimationFrame(fadePreCanvas); }, 1400);
+})();
+
+/* Scroll cards */
+var cards=[['uc-m'],['uc-z'],['uc-b']];
+var dots=document.querySelectorAll('.pdot');
+var cur=-1;
+var rip=document.getElementById('ripple');
+
+function fillBars(id){
+  var el=document.getElementById(id); if(!el) return;
+  el.querySelectorAll('.t-fill').forEach(function(b){
+    b.style.width='0';
+    requestAnimationFrame(function(){requestAnimationFrame(function(){b.style.width=b.getAttribute('data-w')+'%';});});
+  });
+}
+function showTl(){
+  document.querySelectorAll('.tl-row').forEach(function(r,i){
+    r.classList.remove('show');
+    setTimeout(function(){r.classList.add('show');},160+i*155);
+  });
+}
+function goCard(idx){
+  if(idx===cur) return;
+  rip.style.cssText='width:8px;height:8px;';
+  rip.classList.remove('pop'); void rip.offsetWidth; rip.classList.add('pop');
+  if(cur>=0) document.getElementById('uc-'+['m','z','b'][cur]).classList.remove('on');
+  document.getElementById('uc-'+['m','z','b'][idx]).classList.add('on');
+  cur=idx;
+  dots.forEach(function(d,i){d.classList.toggle('on',i===idx);});
+  ['sc-m1','sc-m2','sc-z1','sc-z2'].forEach(function(id){var e=document.getElementById(id);if(e)e.classList.remove('show');});
+  if(idx===0){fillBars('tr-m');setTimeout(function(){document.getElementById('sc-m1').classList.add('show');},280);setTimeout(function(){document.getElementById('sc-m2').classList.add('show');},460);}
+  if(idx===1){fillBars('tr-z');setTimeout(function(){document.getElementById('sc-z1').classList.add('show');},280);setTimeout(function(){document.getElementById('sc-z2').classList.add('show');},460);}
+  if(idx===2){showTl();}
+}
+
+ScrollTrigger.create({
+  trigger:'#scroll-driver',start:'top top',end:'bottom bottom',
+  onUpdate:function(s){goCard(s.progress<.33?0:s.progress<.66?1:2);}
+});
+
+dots.forEach(function(dot){
+  dot.addEventListener('click',function(){
+    var i=parseInt(dot.getAttribute('data-i'));
+    var dr=document.getElementById('scroll-driver');
+    window.scrollTo({top:dr.offsetTop+(dr.offsetHeight/3)*i+8,behavior:'smooth'});
+  });
+});
+
+setTimeout(function(){goCard(0);},1400);
+
+window.addEventListener('scroll',function(){
+  document.getElementById('nav').classList.toggle('scrolled',scrollY>60);
+},{passive:true});
+</script>
+
+
+  <div id="launch-overlay">
+    <div id="launch-circle"></div>
+    <div id="launch-words">
+      <div class="lw-word"><span class="lw-inner">What's</span></div>
+      <div class="lw-word"><span class="lw-inner">Coming.</span></div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var btn = document.getElementById('nav-teaser');
+    if(!btn) return;
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      var dest=btn.getAttribute('href');
+      var rect=btn.getBoundingClientRect();
+      var bx=rect.left+rect.width/2, by=rect.top+rect.height/2;
+      var diam=Math.ceil(Math.sqrt(Math.pow(Math.max(bx,innerWidth-bx)*2,2)+Math.pow(Math.max(by,innerHeight-by)*2,2)))*2.2;
+      var ov=document.getElementById('launch-overlay');
+      var cir=document.getElementById('launch-circle');
+      var wds=document.getElementById('launch-words');
+      var inners=wds.querySelectorAll('.lw-inner');
+      cir.style.width=diam+'px'; cir.style.height=diam+'px';
+      cir.style.left=bx+'px'; cir.style.top=by+'px';
+      ov.style.display='block';
+      gsap.to(btn,{scale:0,opacity:0,rotate:180,duration:0.28,ease:'back.in(2)'});
+      gsap.to(cir,{scale:1,duration:0.65,ease:'expo.inOut',delay:0.1});
+      gsap.to(wds,{opacity:1,duration:0.01,delay:0.55});
+      inners.forEach(function(el,i){gsap.to(el,{y:0,duration:0.6,delay:0.58+i*0.1,ease:'expo.out'});});
+      inners.forEach(function(el,i){gsap.to(el,{y:'-110%',duration:0.45,delay:1.1+i*0.06,ease:'expo.in'});});
+      setTimeout(function(){window.location.href=dest;},1550);
+    });
+  })();
+  </script>
+
+
+  <script>
+  (function(){
+    var btn   = document.getElementById('nav-hamburger');
+    var menu  = document.getElementById('nav-mobile-menu');
+    var close = document.getElementById('nav-mobile-close');
+    if(!btn) return;
+    function openMenu(){
+      menu.classList.add('open');
+      btn.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu(){
+      menu.classList.remove('open');
+      btn.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    btn.addEventListener('click', openMenu);
+    if(close) close.addEventListener('click', closeMenu);
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', closeMenu);
+    });
+    // close on ESC
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape') closeMenu();
+    });
+  })();
+  </script>
+  <script src="assets/js/ambient.js"></script>
+</body>
+</html>

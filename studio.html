@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PEAKMEDIA — The Studio</title>
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&f[]=cabinet-grotesk@400,500,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/nav.css">
+  <link rel="stylesheet" href="assets/css/about.css">
+  <link rel="stylesheet" href="assets/css/services.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <style>
+    .page-hero { padding:14rem 3rem 6rem; max-width:1380px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:end; }
+    .page-label { font-family:'Clash Display',sans-serif; font-size:.62rem; letter-spacing:.42em; text-transform:uppercase; color:var(--orange); margin-bottom:1.5rem; display:flex; align-items:center; gap:.8rem; }
+    .page-label::before { content:''; width:1.8rem; height:1px; background:var(--orange); }
+    .page-title { font-family:'Clash Display',sans-serif; font-weight:700; font-size:clamp(3.5rem,7vw,8rem); letter-spacing:-.04em; line-height:.92; }
+    .page-title span { color:var(--orange); }
+    .page-intro { font-family:'Clash Display',sans-serif; font-size:clamp(1rem,1.4vw,1.25rem); font-weight:400; line-height:1.7; color:var(--muted); }
+    .studio-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(245,240,232,.05); margin:0; }
+    .studio-stat { background:var(--bg); padding:3rem 2rem; }
+    .sstat-num { font-family:'Clash Display',sans-serif; font-weight:700; font-size:3rem; letter-spacing:-.04em; color:var(--orange); line-height:1; margin-bottom:.5rem; }
+    .sstat-label { font-size:.7rem; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); }
+    .values-section { padding:8rem 3rem; max-width:1380px; margin:0 auto; }
+    .values-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:rgba(245,240,232,.05); margin-top:4rem; }
+    .value-item { background:var(--bg); padding:3rem; transition:background .3s; }
+    .value-item:hover { background:var(--card); }
+    .value-num { font-family:'Clash Display',sans-serif; font-size:.6rem; letter-spacing:.28em; color:var(--orange); margin-bottom:1.2rem; }
+    .value-title { font-family:'Clash Display',sans-serif; font-weight:600; font-size:1.5rem; margin-bottom:.8rem; }
+    .value-body { font-size:.875rem; line-height:1.75; color:var(--muted); }
+    #services { padding:8rem 3rem; background:#0a0a0a; }
+  </style>
+<style>
+.page-eye,.page-label{opacity:0;}
+.page-title .title-line{display:block;overflow:hidden;}
+.page-title .title-inner{display:block;transform:translateY(110%);}
+</style>
+</head>
+<body>
+  <div id="cursor"></div>
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">PEAKMEDIA<span class="nav-logo-sub">Studio</span></a>
+    <div class="nav-right">
+    <a href="work.html" class="nav-link">Work</a>
+    <a href="services.html" class="nav-link">Services</a>
+    <a href="studio.html" class="nav-link" style="color:#FF4D00">Studio</a>
+    <a href="founders.html" class="nav-link">Founders</a>
+    <a href="coming-soon.html" class="nav-teaser" id="nav-teaser">
+      <span class="nt-ring"></span>
+      <span class="nt-ring nt-ring2"></span>
+      <span class="nt-dot"></span>
+      <span class="nt-label">What's Coming</span>
+      <span class="nt-arrow">↗</span>
+    </a>
+    <a href="contact.html" class="nav-cta">Start a Project</a>
+  </div>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="nav-mobile-menu" id="nav-mobile-menu">
+    <button class="nav-mobile-close" id="nav-mobile-close" aria-label="Close">✕</button>
+    <a href="index.html">Home</a>
+    <a href="work.html">Work</a>
+    <a href="services.html">Services</a>
+    <a href="studio.html">Studio</a>
+    <a href="founders.html">Founders</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <div class="page-hero">
+    <div>
+      <div class="page-label">The Studio</div>
+      <h1 class="page-title">
+      <span class="title-line"><span class="title-inner">One thing.</span></span>
+      <span class="title-line"><span class="title-inner"><span>Mastered.</span></span></span>
+    </h1>
+    </div>
+    <p class="page-intro">PEAKMEDIA is Marcus and Zara. We build custom, code-based websites — and nothing else. No Webflow. No WordPress. No shortcuts. Every site we've ever shipped has been written line by line, interaction by interaction. That obsessive approach is the entire point.</p>
+  </div>
+
+  <div class="studio-stats">
+    <div class="studio-stat" data-reveal><div class="sstat-num">8+</div><div class="sstat-label">Years Building</div></div>
+    <div class="studio-stat" data-reveal="d1"><div class="sstat-num">62</div><div class="sstat-label">Websites Shipped</div></div>
+    <div class="studio-stat" data-reveal="d2"><div class="sstat-num">0</div><div class="sstat-label">Templates Used</div></div>
+    <div class="studio-stat" data-reveal><div class="sstat-num">100%</div><div class="sstat-label">Custom Code</div></div>
+  </div>
+
+  <div class="values-section">
+    <div class="sec-eyebrow" data-reveal>The Philosophy</div>
+    <h2 class="sec-title" data-reveal>Why code<br>is the answer.</h2>
+    <div class="values-grid">
+      <div class="value-item" data-reveal>
+        <div class="value-num">01</div>
+        <div class="value-title">Code is the design</div>
+        <div class="value-body">We don't design in Figma and hand off to a developer. We design in the browser, where the real material lives. The code is the craft. The site is the truth.</div>
+      </div>
+      <div class="value-item" data-reveal>
+        <div class="value-num">02</div>
+        <div class="value-title">Templates are a ceiling</div>
+        <div class="value-body">Every template-built site looks exactly as good as the template allows. We removed that ceiling the day we opened. Your site should be the best version of your idea — not the best version of someone else's.</div>
+      </div>
+      <div class="value-item" data-reveal>
+        <div class="value-num">03</div>
+        <div class="value-title">Honest over impressive</div>
+        <div class="value-body">If your idea won't translate well to the web, we'll tell you. If your budget won't cover what you're imagining, we'll say so plainly. The clients who value that directness are the ones we do our best work with.</div>
+      </div>
+      <div class="value-item" data-reveal>
+        <div class="value-num">04</div>
+        <div class="value-title">Performance is not optional</div>
+        <div class="value-body">Every site we ship scores above 95 on performance. A slow website is a broken website — no matter how beautiful it looks. Speed and craft are not a trade-off at PEAKMEDIA.</div>
+      </div>
+    </div>
+  </div></div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="assets/js/cursor.js"></script>
+  <script src="assets/js/tilt.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      gsap.registerPlugin(ScrollTrigger);
+      initCursor();
+      initTilt();
+      document.getElementById('nav').classList.add('scrolled');
+      var ro = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); } }); }, {threshold:.14});
+      document.querySelectorAll('[data-reveal]').forEach(function(el){ ro.observe(el); });
+    });
+  </script>
+<script src="assets/js/page-enter.js"></script>
+<script>document.addEventListener("DOMContentLoaded",function(){initPageEnter("THE STUDIO");});</script>
+
+
+  <div id="launch-overlay">
+    <div id="launch-circle"></div>
+    <div id="launch-words">
+      <div class="lw-word"><span class="lw-inner">What's</span></div>
+      <div class="lw-word"><span class="lw-inner">Coming.</span></div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var btn = document.getElementById('nav-teaser');
+    if(!btn) return;
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      var dest=btn.getAttribute('href');
+      var rect=btn.getBoundingClientRect();
+      var bx=rect.left+rect.width/2, by=rect.top+rect.height/2;
+      var diam=Math.ceil(Math.sqrt(Math.pow(Math.max(bx,innerWidth-bx)*2,2)+Math.pow(Math.max(by,innerHeight-by)*2,2)))*2.2;
+      var ov=document.getElementById('launch-overlay');
+      var cir=document.getElementById('launch-circle');
+      var wds=document.getElementById('launch-words');
+      var inners=wds.querySelectorAll('.lw-inner');
+      cir.style.width=diam+'px'; cir.style.height=diam+'px';
+      cir.style.left=bx+'px'; cir.style.top=by+'px';
+      ov.style.display='block';
+      gsap.to(btn,{scale:0,opacity:0,rotate:180,duration:0.28,ease:'back.in(2)'});
+      gsap.to(cir,{scale:1,duration:0.65,ease:'expo.inOut',delay:0.1});
+      gsap.to(wds,{opacity:1,duration:0.01,delay:0.55});
+      inners.forEach(function(el,i){gsap.to(el,{y:0,duration:0.6,delay:0.58+i*0.1,ease:'expo.out'});});
+      inners.forEach(function(el,i){gsap.to(el,{y:'-110%',duration:0.45,delay:1.1+i*0.06,ease:'expo.in'});});
+      setTimeout(function(){window.location.href=dest;},1550);
+    });
+  })();
+  </script>
+
+
+  <script>
+  (function(){
+    var btn   = document.getElementById('nav-hamburger');
+    var menu  = document.getElementById('nav-mobile-menu');
+    var close = document.getElementById('nav-mobile-close');
+    if(!btn) return;
+    function openMenu(){
+      menu.classList.add('open');
+      btn.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu(){
+      menu.classList.remove('open');
+      btn.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    btn.addEventListener('click', openMenu);
+    if(close) close.addEventListener('click', closeMenu);
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', closeMenu);
+    });
+    // close on ESC
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape') closeMenu();
+    });
+  })();
+  </script>
+  <script src="assets/js/ambient.js"></script>
+</body>
+</html>

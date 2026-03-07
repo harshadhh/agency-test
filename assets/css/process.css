@@ -1,0 +1,94 @@
+#process-section {
+  padding: 5rem 0 0;
+}
+
+.process-header {
+  padding: 0 3rem;
+  max-width: 1380px;
+  margin: 0 auto 3rem;
+}
+
+#process-wrapper {
+  position: relative;
+}
+
+#process-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+#process-track {
+  display: flex;
+  width: max-content;
+  gap: 2.8rem;
+  padding: 0 3rem;
+  will-change: transform;
+}
+
+.pstep {
+  width: clamp(340px, 38vw, 500px);
+  flex-shrink: 0;
+  background: var(--card);
+  border-radius: 10px;
+  padding: 2.8rem 2.5rem;
+  position: relative;
+  border: 1px solid rgba(245,240,232,.05);
+  transition: border-color .4s;
+}
+.pstep.active { border-color: rgba(255,77,0,.2); }
+
+.pstep-arc {
+  position: absolute;
+  top: 2rem; right: 2rem;
+  width: 58px; height: 58px;
+}
+
+.pstep-num {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: rgba(245,240,232,.05);
+  line-height: 1;
+  margin-bottom: 1.8rem;
+}
+
+.pstep-title {
+  font-family: 'Clash Display', sans-serif;
+  font-weight: 600;
+  font-size: 1.45rem;
+  color: var(--cream);
+  margin-bottom: .85rem;
+}
+
+.pstep-body {
+  font-size: .875rem;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+.pstep-tag {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-size: .6rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--orange);
+  border: 1px solid rgba(255,77,0,.2);
+  padding: .28rem .75rem;
+  border-radius: 2rem;
+}
+
+.pstep-progress {
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--orange);
+  border-radius: 0 0 0 10px;
+  transition: width .05s linear;
+}
