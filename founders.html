@@ -660,7 +660,7 @@ initCursor();
     },200);
   });
 
-  /* ── After 1.4s: fade canvas → hand off to GSAP curtain ── */
+  /* ── After 1.4s: fade canvas → hand off to curtain ── */
   var fadeS=null;
   function fadePreCanvas(ts){
     if(!fadeS) fadeS=ts;
@@ -670,15 +670,29 @@ initCursor();
     else {
       stopCanvas=true; cancelAnimationFrame(raf);
       pcan.remove(); document.getElementById('precurtain-label').remove();
-      /* NOW run the curtain split — pre-curtain already showed THE FOUNDERS, so just tear */
-      pcan.style.display='none';
-      var tl=gsap.timeline();
-      tl.to('#cl',{x:'-101%',duration:.88,ease:'expo.inOut'})
-        .to('#cr',{x:'101%', duration:.88,ease:'expo.inOut'},'<')
-        .set('#curtain',{display:'none'});
+      /* Split curtain via CSS transition (no GSAP dependency) */
+      var cl=document.getElementById('cl');
+      var cr=document.getElementById('cr');
+      cl.style.transition='transform .88s cubic-bezier(.77,0,.175,1)';
+      cr.style.transition='transform .88s cubic-bezier(.77,0,.175,1)';
+      cl.style.transform='translateX(-101%)';
+      cr.style.transform='translateX(101%)';
+      setTimeout(function(){ document.getElementById('curtain').style.display='none'; }, 920);
     }
   }
   setTimeout(function(){ requestAnimationFrame(fadePreCanvas); }, 1400);
+
+  /* ── HARD FALLBACK: if anything above fails, force curtain open after 4s ── */
+  setTimeout(function(){
+    var curtain=document.getElementById('curtain');
+    if(curtain && curtain.style.display!=='none'){
+      curtain.style.display='none';
+    }
+    var pcanEl=document.getElementById('precurtain-canvas');
+    if(pcanEl) pcanEl.remove();
+    var pLabel=document.getElementById('precurtain-label');
+    if(pLabel) pLabel.remove();
+  }, 4000);
 })();
 
 /* Scroll cards */
