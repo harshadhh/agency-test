@@ -68,6 +68,28 @@
   .f-hud { position:relative; z-index:5; padding:3.5rem; width:100%; }
   #card-z .f-hud { text-align:right; }
   .f-tag { font-family:'Clash Display',sans-serif; font-size:.54rem; letter-spacing:.36em; text-transform:uppercase; color:#FF4D00; margin-bottom:.6rem; }
+  /* ── FOUNDER NAME SCRAMBLE ──────────────────────── */
+  .f-name-inner {
+    display: inline-block;
+  }
+  .f-letter {
+    display: inline-block;
+    opacity: 0;
+    transition: none;
+    will-change: opacity;
+  }
+  .f-letter.space {
+    display: inline-block;
+    width: .35em;
+  }
+  .f-letter.visible {
+    opacity: 1;
+    transform: none;
+  }
+  .f-tag  { opacity:0; transform:translateY(10px); transition:opacity .5s ease, transform .5s ease; }
+  .f-rule { transition:width .7s cubic-bezier(.77,0,.175,1); }
+  .f-tag.revealed  { opacity:.9; transform:none; }
+
   .f-name { font-family:'Clash Display',sans-serif; font-weight:700; font-size:clamp(1.8rem,3.2vw,3.8rem); letter-spacing:-.03em; line-height:.92; color:#F5F0E8; }
   .f-rule { height:2px; background:#FF4D00; margin-top:.85rem; width:0; transition:width .8s cubic-bezier(.77,0,.175,1) .2s; }
   #card-z .f-rule { margin-left:auto; }
@@ -119,7 +141,7 @@
   .t-row  { display:flex; align-items:center; gap:.75rem; }
   .t-lbl  { font-family:'Clash Display',sans-serif; font-size:.46rem; letter-spacing:.14em; text-transform:uppercase; color:#6B6560; width:90px; flex-shrink:0; }
   .t-track{ flex:1; height:2px; background:rgba(245,240,232,.06); border-radius:2px; overflow:hidden; }
-  .t-fill { height:100%; background:#FF4D00; border-radius:2px; width:0; transition:width 1.4s cubic-bezier(.23,1,.32,1); }
+  .t-fill { height:100%; background:#FF4D00; border-radius:2px; width:0; transition:none; }
   .t-num  { font-family:'Clash Display',sans-serif; font-size:.5rem; color:#FF4D00; width:24px; text-align:right; flex-shrink:0; }
 
   /* ── PORTRAIT PANEL ─────────────────────────────── */
@@ -233,7 +255,7 @@
     <div class="f-overlay"></div>
     <div class="f-hud">
       <div class="f-tag">Co-Founder · Developer</div>
-      <div class="f-name">Marcus Cole</div>
+      <div class="f-name" id="fname-m"><span class="f-name-inner">Marcus Cole</span></div>
       <div class="f-rule"></div>
       <div class="f-quote">"The browser is my only design tool."</div>
     </div>
@@ -252,7 +274,7 @@
     <div class="f-overlay"></div>
     <div class="f-hud">
       <div class="f-tag">Co-Founder · Strategy</div>
-      <div class="f-name">Zara Nouri</div>
+      <div class="f-name" id="fname-z"><span class="f-name-inner">Zara Nouri</span></div>
       <div class="f-rule"></div>
       <div class="f-quote">"A great website pays for itself."</div>
     </div>
@@ -376,6 +398,124 @@
 <script src="assets/js/page-enter.js"></script>
 <script>
 initCursor();
+
+/* ══════════════════════════════════════════════════
+   FOUNDER NAME SCRAMBLE ANIMATION
+   Fires after the page-enter curtain fully fades out.
+   Each letter cycles through random chars then snaps
+   to its real value — staggered left to right.
+   Both names animate simultaneously on their cards.
+══════════════════════════════════════════════════ */
+(function(){
+  var CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&';
+  var NAMES = [
+    { id:'fname-m', text:'Marcus Cole' },
+    { id:'fname-z', text:'Zara Nouri'  }
+  ];
+
+  /* Build letter spans for each name */
+  NAMES.forEach(function(n){
+    var el = document.getElementById(n.id);
+    if (!el) return;
+    var inner = el.querySelector('.f-name-inner');
+    if (!inner) return;
+    var html = '';
+    n.text.split('').forEach(function(ch){
+      if (ch === ' ') {
+        html += '<span class="f-letter space">&nbsp;</span>';
+      } else {
+        html += '<span class="f-letter" data-final="'+ch+'">'+ch+'</span>';
+      }
+    });
+    inner.innerHTML = html;
+  });
+
+  /* scramble one letter then dissolve to final char */
+  function scrambleLetter(span, finalChar, duration) {
+    /* Phase 1: fade in while scrambling (fast random chars) */
+    /* Phase 2: slow down scramble, increase pause between changes */
+    /* Phase 3: lock to final char with a brief orange flash */
+    var startTime = null;
+    var scrambleDuration = duration * 0.7;
+    var lastSwap = 0;
+    var swapInterval = 40; /* ms between char changes — gets slower over time */
+
+    /* fade the letter in immediately */
+    span.style.transition = 'opacity .12s ease';
+    span.style.opacity = '1';
+
+    function tick(ts) {
+      if (!startTime) startTime = ts;
+      var elapsed = ts - startTime;
+      var progress = elapsed / scrambleDuration;
+
+      if (elapsed < scrambleDuration) {
+        /* interval grows as we approach the end — slows down naturally */
+        var interval = 40 + progress * 120;
+        if (ts - lastSwap > interval) {
+          span.textContent = CHARS[Math.floor(Math.random() * CHARS.length)];
+          lastSwap = ts;
+        }
+        requestAnimationFrame(tick);
+      } else {
+        /* lock — brief orange colour flash then back to cream */
+        span.textContent = finalChar;
+        span.style.transition = 'color .25s ease';
+        span.style.color = '#FF4D00';
+        setTimeout(function(){
+          span.style.color = '';
+        }, 200);
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  /* run animation on both name elements */
+  function runNameAnimation() {
+    NAMES.forEach(function(n, ni){
+      var el = document.getElementById(n.id);
+      if (!el) return;
+      var letters = el.querySelectorAll('.f-letter:not(.space)');
+      var spaces  = el.querySelectorAll('.f-letter.space');
+
+      /* show spaces immediately */
+      spaces.forEach(function(s){ s.classList.add('visible'); });
+
+      letters.forEach(function(span, i){
+        var finalChar = span.getAttribute('data-final');
+        var staggerDelay = i * 65; /* 65ms between each letter */
+        var scrambleDuration = 380; /* each letter scrambles for 380ms */
+        setTimeout(function(){
+          scrambleLetter(span, finalChar, scrambleDuration);
+        }, staggerDelay);
+      });
+
+      /* reveal tag line after last letter starts */
+      var tagDelay = letters.length * 65 + 200;
+      setTimeout(function(){
+        var tag = el.closest('.f-hud').querySelector('.f-tag');
+        if (tag) tag.classList.add('revealed');
+        var rule = el.closest('.f-hud').querySelector('.f-rule');
+        /* don't auto-expand rule — hover still controls it */
+      }, tagDelay);
+    });
+  }
+
+  /* Hook into page-enter: it calls animatePageContent after curtain fades.
+     We override it by waiting for the canvas to be removed (z-index:8500 gone),
+     then fire. Polling is fine — it only runs once. */
+  var waited = 0;
+  var poll = setInterval(function(){
+    waited += 80;
+    /* canvas is removed after ~1300 + 550ms = ~1850ms */
+    var stillThere = document.querySelector('canvas[style*="8500"]');
+    if (!stillThere || waited > 3000) {
+      clearInterval(poll);
+      runNameAnimation();
+    }
+  }, 80);
+})();
+
 initPageEnter('THE FOUNDERS');
 
 /* NAV scroll */
@@ -399,11 +539,48 @@ var done = {m:false, z:false, b:false};
 function animateBars(id) {
   if (done[id]) return; done[id] = true;
   var el = document.getElementById('tr-'+id); if (!el) return;
-  el.querySelectorAll('.t-fill').forEach(function(b){
-    b.style.width = '0';
-    requestAnimationFrame(function(){ requestAnimationFrame(function(){
-      b.style.width = b.getAttribute('data-w') + '%';
-    });});
+  var rows = el.querySelectorAll('.t-row');
+  rows.forEach(function(row, ri) {
+    var fill   = row.querySelector('.t-fill');
+    var numEl  = row.querySelector('.t-num');
+    var target = parseInt(fill.getAttribute('data-w'));
+    var isInf  = isNaN(target); // "∞" row
+    if (isInf) {
+      // Just animate the bar to 100% for obsession/directness
+      setTimeout(function(){
+        fill.style.transition = 'width 3.8s cubic-bezier(.25,1,.25,1)';
+        fill.style.width = '100%';
+      }, ri * 120);
+      return;
+    }
+    // Duration: target / 4 numbers per second, min 2s max 5s
+    var duration = Math.min(5000, Math.max(2000, target / 4 * 1000));
+    var startTime = null;
+    var delay = ri * 120; // stagger each bar slightly
+
+    setTimeout(function(){
+      fill.style.transition = 'none';
+      fill.style.width = '0%';
+      numEl.textContent = '0';
+
+      function step(ts) {
+        if (!startTime) startTime = ts;
+        var elapsed = ts - startTime;
+        var progress = Math.min(1, elapsed / duration);
+        // ease out cubic
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var current = Math.round(eased * target);
+        fill.style.width = (eased * target) + '%';
+        numEl.textContent = current;
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          fill.style.width = target + '%';
+          numEl.textContent = target;
+        }
+      }
+      requestAnimationFrame(step);
+    }, delay);
   });
 }
 
@@ -436,8 +613,6 @@ dots.forEach(function(dot, i){
   });
 });
 
-/* Trigger Marcus bars immediately */
-animateBars('m');
 </script>
 
 <!-- What's Coming transition -->
