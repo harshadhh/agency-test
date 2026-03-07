@@ -11,24 +11,49 @@
   <link rel="stylesheet" href="assets/css/work.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
   <style>
-    .page-hero { padding: 14rem 3rem 5rem; max-width: 1380px; margin: 0 auto; }
-    .page-label { font-family:'Clash Display',sans-serif; font-size:.62rem; letter-spacing:.42em; text-transform:uppercase; color:var(--orange); margin-bottom:1.5rem; display:flex; align-items:center; gap:.8rem; }
-    .page-label::before { content:''; width:1.8rem; height:1px; background:var(--orange); }
-    .page-title { font-family:'Clash Display',sans-serif; font-weight:700; font-size:clamp(4rem,9vw,10rem); letter-spacing:-.04em; line-height:.92; margin-bottom:2rem; }
-    .page-title span { color:var(--orange); }
-    .page-sub { font-size:.9rem; color:var(--muted); letter-spacing:.18em; text-transform:uppercase; line-height:1.7; }
-    .filter-bar { padding:0 3rem 4rem; max-width:1380px; margin:0 auto; display:flex; gap:.6rem; flex-wrap:wrap; }
+    /* ── shared (all screen sizes) ── */
+    .page-hero  { max-width:1380px; margin:0 auto; }
+    .filter-bar { max-width:1380px; margin:0 auto; display:flex; gap:.6rem; flex-wrap:wrap; }
     .filter-btn { font-family:'Clash Display',sans-serif; font-size:.62rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); background:none; border:1px solid rgba(107,101,96,.22); padding:.45rem 1.1rem; border-radius:2rem; cursor:none; transition:color .3s,border-color .3s,background .3s; }
     .filter-btn:hover,.filter-btn.active { color:var(--cream); border-color:var(--orange); background:rgba(255,77,0,.06); }
-    #work { padding:0 3rem 8rem; }
-    .work-grid { grid-template-columns:repeat(3,1fr)!important; grid-template-rows:auto!important; }
-    .wcard { min-height:400px!important; }
-    .wcard:first-child { grid-row:span 1!important; }
+    .page-label { font-family:'Clash Display',sans-serif; font-size:.62rem; letter-spacing:.42em; text-transform:uppercase; color:var(--orange); margin-bottom:1.5rem; display:flex; align-items:center; gap:.8rem; }
+    .page-label::before { content:''; width:1.8rem; height:1px; background:var(--orange); }
+    .page-title { font-family:'Clash Display',sans-serif; font-weight:700; letter-spacing:-.04em; line-height:.92; margin-bottom:2rem; }
+    .page-title span { color:var(--orange); }
+    .page-sub { color:var(--muted); text-transform:uppercase; line-height:1.7; }
+
+    /* ── desktop only ── */
+    @media (min-width: 641px) {
+      .page-hero  { padding: 14rem 3rem 5rem; }
+      .page-title { font-size: clamp(4rem,9vw,10rem); }
+      .page-sub   { font-size: .9rem; letter-spacing: .18em; }
+      .filter-bar { padding: 0 3rem 4rem; }
+      #work       { padding: 0 3rem 8rem; }
+      .work-grid  { grid-template-columns: repeat(3,1fr); grid-template-rows: auto; }
+      .wcard      { min-height: 400px; }
+      .wcard:first-child { grid-row: span 1; }
+    }
   </style>
 <style>
 .page-eye{opacity:0;}
 .page-title .title-line{display:block;overflow:hidden;}
 .page-title .title-inner{display:block;transform:translateY(110%);}
+
+@media (max-width: 640px) {
+  .page-hero         { padding: 7rem 1.2rem 2.5rem; }
+  .page-title        { font-size: clamp(2.4rem, 10.5vw, 4.5rem); }
+  .page-sub          { font-size: .72rem; letter-spacing: .1em; }
+  .filter-bar        { padding: 0 1.2rem 2rem; gap: .45rem; }
+  .filter-btn        { font-size: .54rem; padding: .36rem .85rem; }
+  #work              { padding: 0 1.2rem 4rem; }
+  .work-grid         { grid-template-columns: 1fr; grid-template-rows: auto; gap: 1rem; }
+  .wcard             { min-height: 240px; grid-row: span 1 !important; }
+  .wcard:first-child { min-height: 240px; grid-row: span 1 !important; }
+  .wcard-title       { font-size: 1.15rem; }
+  .wcard-num         { font-size: .52rem; }
+  .wcard-info        { padding: 1.2rem; }
+  .wtag              { font-size: .5rem; padding: .16rem .5rem; }
+}
 </style>
 </head>
 <body>
