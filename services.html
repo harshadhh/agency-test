@@ -187,6 +187,56 @@ body { overflow-x:hidden; cursor:none; }
   border-radius:4rem; transition:transform .25s,box-shadow .3s;
 }
 .pf-cta:hover{transform:scale(1.04);box-shadow:0 0 26px rgba(255,77,0,.32);}
+
+/* ══════════════════════════════════════════════
+   MOBILE — max-width: 640px
+   Desktop version: NEVER TOUCHED
+══════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  /* Hide cursor */
+  #cursor                 { display: none !important; }
+  body                    { cursor: auto !important; }
+
+  /* Page wrap */
+  .page-wrap              { padding: 6.5rem 1.2rem 3rem; }
+  .page-header            { margin-bottom: 2.5rem; }
+  .page-eye               { font-size: .5rem; letter-spacing: .3em; margin-bottom: 1rem; }
+  .page-title             { font-size: clamp(2.2rem, 10vw, 4rem); line-height: .95; }
+
+  /* Grid — single column, no gap lines */
+  #services-grid          { grid-template-columns: 1fr; gap: .8rem; background: transparent; }
+
+  /* Cards — clean single column layout */
+  .svc-card               {
+    padding: 1.6rem 1.3rem 1.4rem;
+    border: 1px solid rgba(245,240,232,.07);
+    border-radius: 8px;
+    cursor: auto;
+  }
+  .card-num               { font-size: .48rem; margin-bottom: 1.2rem; }
+  .card-icon              { font-size: 1.5rem; margin-bottom: .9rem; }
+  .card-name              { font-size: 1.05rem; margin-bottom: .5rem; }
+  .card-desc              {
+    font-size: .82rem;
+    line-height: 1.65;
+    color: rgba(245,240,232,.55);
+  }
+  /* Always show arrow on mobile */
+  .card-arrow             { opacity: .4; transform: none; }
+
+  /* Hide desktop-only effects */
+  #status-bar             { display: none; }
+  #ambient-label          { display: none; }
+  #bg-canvas              { display: none; }
+
+  /* Footer */
+  .page-footer            {
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: 2rem 1.2rem;
+    text-align: center;
+  }
+}
 </style>
 </head>
 <body>
