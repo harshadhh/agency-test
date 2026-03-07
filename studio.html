@@ -35,6 +35,95 @@
 .page-eye,.page-label{opacity:0;}
 .page-title .title-line{display:block;overflow:hidden;}
 .page-title .title-inner{display:block;transform:translateY(110%);}
+
+@media (max-width: 640px) {
+
+  /* ── Fix huge top gap ── */
+  .page-hero {
+    padding: 6.5rem 1.2rem 2.5rem !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  .page-label { font-size: .5rem; letter-spacing: .3em; }
+  .page-title { font-size: clamp(2.4rem, 10vw, 4rem) !important; }
+  .page-intro { font-size: .85rem !important; line-height: 1.7; color: rgba(107,101,96,.85); }
+
+  /* ── Stats: 2×2 grid ── */
+  .studio-stats          { grid-template-columns: 1fr 1fr !important; gap: 1px; }
+  .studio-stat           { padding: 1.6rem 1.2rem; }
+  .sstat-num             { font-size: 2rem; }
+  .sstat-label           { font-size: .55rem; letter-spacing: .16em; }
+
+  /* ── Values section ── */
+  .values-section        { padding: 4rem 1.2rem !important; }
+  .sec-title             { font-size: clamp(1.8rem, 8vw, 3rem) !important; margin-bottom: 0 !important; }
+
+  /* ── CREATIVE: staggered zigzag timeline ── */
+  .values-grid {
+    display: flex !important;
+    flex-direction: column;
+    gap: 0;
+    background: transparent !important;
+    margin-top: 2.5rem !important;
+    position: relative;
+  }
+
+  /* Vertical orange spine */
+  .values-grid::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(255,77,0,.3) 20%, rgba(255,77,0,.3) 80%, transparent);
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .value-item {
+    background: transparent !important;
+    width: 80% !important;
+    padding: 1.4rem 1rem 1.4rem !important;
+    border-bottom: none !important;
+    position: relative;
+  }
+
+  /* Odd: left side, orange left border */
+  .value-item:nth-child(odd) {
+    align-self: flex-start;
+    border-left: 2px solid var(--orange) !important;
+    padding-left: 1rem !important;
+  }
+
+  /* Even: right side, dimmer right border */
+  .value-item:nth-child(even) {
+    align-self: flex-end;
+    border-right: 2px solid rgba(255,77,0,.45) !important;
+    padding-right: 1rem !important;
+    text-align: right;
+  }
+
+  /* Dot on spine */
+  .value-item::after {
+    content: '';
+    position: absolute;
+    top: 1.8rem;
+    width: 8px; height: 8px;
+    background: var(--orange);
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(255,77,0,.6);
+  }
+  .value-item:nth-child(odd)::after  { right: -10.5%; }
+  .value-item:nth-child(even)::after { left: -10.5%; }
+
+  .value-num   { font-size: .48rem; margin-bottom: .6rem; }
+  .value-title { font-size: 1rem; margin-bottom: .4rem; line-height: 1.2; }
+  .value-body  { font-size: .78rem; line-height: 1.65; }
+
+  /* Cursor */
+  #cursor { display: none !important; }
+  body    { cursor: auto !important; }
+}
 </style>
 </head>
 <body>
