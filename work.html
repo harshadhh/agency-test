@@ -3,27 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PEAKMEDIA — The Work</title>
+  <title>PEAKMEDIA — The Journal</title>
   <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&f[]=cabinet-grotesk@400,500,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/nav.css">
-  <link rel="stylesheet" href="assets/css/work.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
   <style>
-    .page-hero { padding: 14rem 3rem 5rem; max-width: 1380px; margin: 0 auto; }
+    .page-hero { padding:14rem 3rem 6rem; max-width:1380px; margin:0 auto; }
     .page-label { font-family:'Clash Display',sans-serif; font-size:.62rem; letter-spacing:.42em; text-transform:uppercase; color:var(--orange); margin-bottom:1.5rem; display:flex; align-items:center; gap:.8rem; }
     .page-label::before { content:''; width:1.8rem; height:1px; background:var(--orange); }
-    .page-title { font-family:'Clash Display',sans-serif; font-weight:700; font-size:clamp(4rem,9vw,10rem); letter-spacing:-.04em; line-height:.92; margin-bottom:2rem; }
+    .page-title { font-family:'Clash Display',sans-serif; font-weight:700; font-size:clamp(4rem,9vw,10rem); letter-spacing:-.04em; line-height:.92; }
     .page-title span { color:var(--orange); }
-    .page-sub { font-size:.9rem; color:var(--muted); letter-spacing:.18em; text-transform:uppercase; line-height:1.7; }
-    .filter-bar { padding:0 3rem 4rem; max-width:1380px; margin:0 auto; display:flex; gap:.6rem; flex-wrap:wrap; }
-    .filter-btn { font-family:'Clash Display',sans-serif; font-size:.62rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); background:none; border:1px solid rgba(107,101,96,.22); padding:.45rem 1.1rem; border-radius:2rem; cursor:none; transition:color .3s,border-color .3s,background .3s; }
-    .filter-btn:hover,.filter-btn.active { color:var(--cream); border-color:var(--orange); background:rgba(255,77,0,.06); }
-    #work { padding:0 3rem 8rem; }
-    .work-grid { grid-template-columns:repeat(3,1fr)!important; grid-template-rows:auto!important; }
-    .wcard { min-height:400px!important; }
-    .wcard:first-child { grid-row:span 1!important; }
+    .posts-grid { padding:0 3rem 8rem; max-width:1380px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:1.4rem; }
+    .post-card { background:var(--card); border-radius:10px; overflow:hidden; border:1px solid rgba(245,240,232,.05); transition:border-color .3s; cursor:none; }
+    .post-card:hover { border-color:rgba(255,77,0,.2); }
+    .post-thumb { height:220px; background:linear-gradient(135deg,#1a0800,#0d0400); position:relative; overflow:hidden; }
+    .post-thumb::after { content:''; position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,.6),transparent); }
+    .post-body { padding:2rem; }
+    .post-meta { display:flex; align-items:center; gap:1rem; margin-bottom:1rem; }
+    .post-tag { font-size:.55rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--orange); border:1px solid rgba(255,77,0,.25); padding:.2rem .6rem; border-radius:2rem; }
+    .post-date { font-size:.6rem; letter-spacing:.12em; color:var(--muted); }
+    .post-title { font-family:'Clash Display',sans-serif; font-weight:600; font-size:1.3rem; line-height:1.2; margin-bottom:.75rem; transition:color .3s; }
+    .post-card:hover .post-title { color:var(--orange); }
+    .post-excerpt { font-size:.855rem; line-height:1.68; color:var(--muted); }
+    .post-read { display:inline-flex; align-items:center; gap:.4rem; font-size:.65rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--orange); margin-top:1.2rem; text-decoration:none; transition:gap .3s; }
+    .post-read:hover { gap:.7rem; }
+    .featured-post { grid-column:span 2; display:grid; grid-template-columns:1.4fr 1fr; }
+    .featured-post .post-thumb { height:100%; min-height:360px; }
   </style>
 <style>
 .page-eye{opacity:0;}
@@ -36,24 +43,19 @@
   <nav id="nav">
     <a href="index.html" class="nav-logo">PEAKMEDIA<span class="nav-logo-sub">Studio</span></a>
     <div class="nav-right">
-    <a href="work.html" class="nav-link" style="color:#FF4D00">Work</a>
+    <a href="work.html" class="nav-link">Work</a>
     <a href="services.html" class="nav-link">Services</a>
     <a href="studio.html" class="nav-link">Studio</a>
     <a href="founders.html" class="nav-link">Founders</a>
-    <a href="coming-soon.html" class="nav-teaser" id="nav-teaser">
-      <span class="nt-ring"></span>
-      <span class="nt-ring nt-ring2"></span>
-      <span class="nt-dot"></span>
-      <span class="nt-label">What's Coming</span>
-      <span class="nt-arrow">↗</span>
-    </a>
     <a href="contact.html" class="nav-cta">Start a Project</a>
   </div>
-  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
   </nav>
-
+  <!-- MOBILE MENU -->
   <div class="nav-mobile-menu" id="nav-mobile-menu">
-    <button class="nav-mobile-close" id="nav-mobile-close" aria-label="Close">✕</button>
+    <button class="nav-mobile-close" id="nav-mobile-close" aria-label="Close menu">✕</button>
     <a href="index.html">Home</a>
     <a href="work.html">Work</a>
     <a href="services.html">Services</a>
@@ -61,90 +63,86 @@
     <a href="founders.html">Founders</a>
     <a href="contact.html">Contact</a>
   </div>
+
   <div class="page-hero">
-    <div class="page-eye">Selected Work</div>
+    <div class="page-eye">The Journal</div>
     <h1 class="page-title">
-      <span class="title-line"><span class="title-inner">Sixty-two</span></span>
-      <span class="title-line"><span class="title-inner"><span style="color:var(--orange)">websites.</span></span></span>
+      <span class="title-line"><span class="title-inner">Thoughts on</span></span>
+      <span class="title-line"><span class="title-inner"><span>craft.</span></span></span>
     </h1>
-    <p class="page-sub">62 custom-coded websites. Not one built on a template.</p>
   </div>
-  <div class="filter-bar">
-    <button class="filter-btn active">All</button>
-    <button class="filter-btn">Motion</button>
-    <button class="filter-btn">Web Design</button>
-    <button class="filter-btn">Development</button>
-    <button class="filter-btn">Motion</button>
-  </div>
-  <section id="work">
-    <div class="work-inner" style="max-width:1380px;margin:0 auto">
-      <div class="work-grid">
-        <div class="wcard" data-mag><div class="wcard-line"></div><div class="wcard-bg" style="background:linear-gradient(155deg,#3a1400,#0d0400)"></div><div class="wcard-overlay"></div><div class="wcard-info"><div class="wcard-num">01 — 2024</div><div class="wcard-title">ZESTIFY FOODS</div><div class="wcard-tags"><span class="wtag">Custom Build</span><span class="wtag">Motion</span></div></div></div>
-        <div class="wcard" data-mag><div class="wcard-line"></div><div class="wcard-bg" style="background:linear-gradient(135deg,#090920,#060612)"></div><div class="wcard-overlay"></div><div class="wcard-info"><div class="wcard-num">02 — 2024</div><div class="wcard-title">VAULTEX</div><div class="wcard-tags"><span class="wtag">Custom Build</span><span class="wtag">Interactions</span></div></div></div>
-        <div class="wcard" data-mag><div class="wcard-line"></div><div class="wcard-bg" style="background:linear-gradient(135deg,#001a08,#000b04)"></div><div class="wcard-overlay"></div><div class="wcard-info"><div class="wcard-num">03 — 2024</div><div class="wcard-title">INKRAFT STUDIO</div><div class="wcard-tags"><span class="wtag">Custom Build</span><span class="wtag">Animation</span></div></div></div>
-        <div class="wcard" data-mag><div class="wcard-line"></div><div class="wcard-bg" style="background:linear-gradient(155deg,#1a001a,#0d000d)"></div><div class="wcard-overlay"></div><div class="wcard-info"><div class="wcard-num">04 — 2023</div><div class="wcard-title">KRATOS VENTURES</div><div class="wcard-tags"><span class="wtag">Custom Build</span><span class="wtag">Performance</span></div></div></div>
-        <div class="wcard" data-mag><div class="wcard-line"></div><div class="wcard-bg" style="background:linear-gradient(135deg,#0a1a00,#060f00)"></div><div class="wcard-overlay"></div><div class="wcard-info"><div class="wcard-num">05 — 2023</div><div class="wcard-title">LUMENARY</div><div class="wcard-tags"><span class="wtag">Custom Build</span><span class="wtag">Motion</span></div></div></div>
-        <div class="wcard" data-mag><div class="wcard-line"></div><div class="wcard-bg" style="background:linear-gradient(135deg,#1a0a00,#0d0500)"></div><div class="wcard-overlay"></div><div class="wcard-info"><div class="wcard-num">06 — 2023</div><div class="wcard-title">ORION CAPITAL</div><div class="wcard-tags"><span class="wtag">Custom Build</span><span class="wtag">Interactions</span></div></div></div>
+
+  <div class="posts-grid">
+
+    <div class="post-card featured-post" data-reveal>
+      <div class="post-thumb" style="background:linear-gradient(135deg,#3a1400,#0d0400)"></div>
+      <div class="post-body">
+        <div class="post-meta">
+          <span class="post-tag">Process</span>
+          <span class="post-date">Dec 12, 2024</span>
+        </div>
+        <div class="post-title">Why we stopped using Figma for final designs</div>
+        <div class="post-excerpt">The gap between a Figma mockup and a real browser is where most agencies quietly abandon their ambition. We closed the gap by removing the handoff entirely.</div>
+        <a href="#" class="post-read">Read Article →</a>
       </div>
     </div>
-  </section>
+
+    <div class="post-card" data-reveal>
+      <div class="post-thumb" style="background:linear-gradient(135deg,#090920,#060612)"></div>
+      <div class="post-body">
+        <div class="post-meta"><span class="post-tag">Typography</span><span class="post-date">Nov 28, 2024</span></div>
+        <div class="post-title">Variable fonts changed how we think about type in motion</div>
+        <div class="post-excerpt">When a typeface can breathe, you stop thinking about animation as a layer on top and start thinking about it as a property of the type itself.</div>
+        <a href="#" class="post-read">Read Article →</a>
+      </div>
+    </div>
+
+    <div class="post-card" data-reveal="d1">
+      <div class="post-thumb" style="background:linear-gradient(135deg,#001a08,#000b04)"></div>
+      <div class="post-body">
+        <div class="post-meta"><span class="post-tag">Performance</span><span class="post-date">Nov 5, 2024</span></div>
+        <div class="post-title">The case for doing less animation, better</div>
+        <div class="post-excerpt">Most sites overanimate because they can. We've learned that removing 60% of our animations and making the remaining 40% perfect is always the right trade.</div>
+        <a href="#" class="post-read">Read Article →</a>
+      </div>
+    </div>
+
+    <div class="post-card" data-reveal>
+      <div class="post-thumb" style="background:linear-gradient(135deg,#1a001a,#0d000d)"></div>
+      <div class="post-body">
+        <div class="post-meta"><span class="post-tag">Craft</span><span class="post-date">Oct 18, 2024</span></div>
+        <div class="post-title">On the obsessive details nobody will ever consciously see</div>
+        <div class="post-excerpt">The easing curve on a 200ms transition. The 0.015em letter-spacing on a heading. These are the details that separate something that feels right from something that just works.</div>
+        <a href="#" class="post-read">Read Article →</a>
+      </div>
+    </div>
+
+    <div class="post-card" data-reveal="d1">
+      <div class="post-thumb" style="background:linear-gradient(135deg,#0a1a00,#060f00)"></div>
+      <div class="post-body">
+        <div class="post-meta"><span class="post-tag">Client Work</span><span class="post-date">Sep 30, 2024</span></div>
+        <div class="post-title">How we rebuilt Vault Digital's identity without losing their soul</div>
+        <div class="post-excerpt">The brief said "modernise." What they actually needed was the courage to double down on what already made them different. Here's how we figured that out.</div>
+        <a href="#" class="post-read">Read Article →</a>
+      </div>
+    </div>
+
+  </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="assets/js/cursor.js"></script>
-  <script src="assets/js/magnetic.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       gsap.registerPlugin(ScrollTrigger);
       initCursor();
-      initMagnetic();
       document.getElementById('nav').classList.add('scrolled');
-      document.querySelectorAll('.filter-btn').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
-          btn.classList.add('active');
-        });
-      });
+      var ro = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); } }); }, {threshold:.1});
+      document.querySelectorAll('[data-reveal]').forEach(function(el){ ro.observe(el); });
     });
   </script>
 <script src="assets/js/page-enter.js"></script>
-<script>document.addEventListener("DOMContentLoaded",function(){initPageEnter("THE WORK");});</script>
-
-
-  <div id="launch-overlay">
-    <div id="launch-circle"></div>
-    <div id="launch-words">
-      <div class="lw-word"><span class="lw-inner">What's</span></div>
-      <div class="lw-word"><span class="lw-inner">Coming.</span></div>
-    </div>
-  </div>
-
-  <script>
-  (function(){
-    var btn = document.getElementById('nav-teaser');
-    if(!btn) return;
-    btn.addEventListener('click', function(e){
-      e.preventDefault();
-      var dest=btn.getAttribute('href');
-      var rect=btn.getBoundingClientRect();
-      var bx=rect.left+rect.width/2, by=rect.top+rect.height/2;
-      var diam=Math.ceil(Math.sqrt(Math.pow(Math.max(bx,innerWidth-bx)*2,2)+Math.pow(Math.max(by,innerHeight-by)*2,2)))*2.2;
-      var ov=document.getElementById('launch-overlay');
-      var cir=document.getElementById('launch-circle');
-      var wds=document.getElementById('launch-words');
-      var inners=wds.querySelectorAll('.lw-inner');
-      cir.style.width=diam+'px'; cir.style.height=diam+'px';
-      cir.style.left=bx+'px'; cir.style.top=by+'px';
-      ov.style.display='block';
-      gsap.to(btn,{scale:0,opacity:0,rotate:180,duration:0.28,ease:'back.in(2)'});
-      gsap.to(cir,{scale:1,duration:0.65,ease:'expo.inOut',delay:0.1});
-      gsap.to(wds,{opacity:1,duration:0.01,delay:0.55});
-      inners.forEach(function(el,i){gsap.to(el,{y:0,duration:0.6,delay:0.58+i*0.1,ease:'expo.out'});});
-      inners.forEach(function(el,i){gsap.to(el,{y:'-110%',duration:0.45,delay:1.1+i*0.06,ease:'expo.in'});});
-      setTimeout(function(){window.location.href=dest;},1550);
-    });
-  })();
-  </script>
-
+<script>document.addEventListener("DOMContentLoaded",function(){initPageEnter("THE JOURNAL");});</script>
 
   <script>
   (function(){

@@ -1,281 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>What's Coming — PEAKMEDIA</title>
-  <link rel="preconnect" href="https://api.fontshare.com">
-  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&f[]=cabinet-grotesk@400,500,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="assets/css/nav.css">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #0D0D0D; color: #F5F0E8; font-family: 'Clash Display', sans-serif; min-height: 100vh; overflow-x: hidden; cursor: default; }
-    #nebula-canvas, #radar-canvas, #particle-canvas, #scanline-canvas { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-    #particle-canvas { z-index: 1; opacity: .7; }
-    #radar-canvas    { z-index: 2; opacity: .55; }
-    #scanline-canvas { z-index: 3; opacity: .18; }
-    .cs-wrap { position: relative; z-index: 10; min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 9rem 2rem 5rem; text-align: center; }
-    .cs-eyebrow { font-size: .58rem; letter-spacing: .5em; text-transform: uppercase; color: #FF4D00; margin-bottom: 1.6rem; display: flex; align-items: center; gap: .7rem; }
-    .cs-eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: #FF4D00; animation: eyeDotPulse 1.6s ease-in-out infinite; flex-shrink:0; }
-    @keyframes eyeDotPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(255,77,0,.6); } 50% { box-shadow: 0 0 0 8px rgba(255,77,0,0); } }
-    .cs-headline { font-weight: 700; font-size: clamp(2.4rem, 6vw, 6rem); letter-spacing: -.04em; line-height: .96; margin-bottom: 1.4rem; }
-    .cs-headline span { color: #FF4D00; }
-    .cs-sub { font-weight: 300; font-size: clamp(.88rem, 1.3vw, 1.1rem); color: rgba(245,240,232,.42); max-width: 520px; line-height: 1.75; margin-bottom: 3rem; letter-spacing: .01em; }
-    .cs-countdown { display: flex; gap: 2rem; margin-bottom: 3rem; }
-    .cd-unit { text-align: center; min-width: 64px; }
-    .cd-num { font-weight: 700; font-size: clamp(2rem, 5vw, 3.8rem); letter-spacing: -.06em; color: #FF4D00; line-height: 1; display: block; font-variant-numeric: tabular-nums; }
-    .cd-lbl { font-size: .44rem; letter-spacing: .32em; text-transform: uppercase; color: rgba(245,240,232,.28); margin-top: .35rem; display: block; }
-    .cd-sep { font-size: clamp(1.4rem, 3vw, 2.8rem); color: rgba(255,77,0,.25); align-self: flex-start; margin-top: .3rem; font-weight: 300; line-height: 1; }
-    .cs-form-wrap { margin-bottom: 4rem; min-height: 52px; display: flex; align-items: center; justify-content: center; }
-    .cs-form { display: flex; gap: .65rem; flex-wrap: wrap; justify-content: center; }
-    .cs-input { background: rgba(245,240,232,.05); border: 1px solid rgba(245,240,232,.12); border-radius: 2rem; padding: .8rem 1.5rem; font-family: 'Clash Display', sans-serif; font-size: .8rem; color: #F5F0E8; outline: none; width: 260px; transition: border-color .3s; }
-    .cs-input:focus { border-color: rgba(255,77,0,.5); }
-    .cs-input::placeholder { color: rgba(245,240,232,.22); }
-    .cs-btn { background: #FF4D00; border: none; border-radius: 2rem; padding: .8rem 1.8rem; font-family: 'Clash Display', sans-serif; font-weight: 700; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: #fff; cursor: pointer; transition: opacity .3s, transform .2s; }
-    .cs-btn:hover { opacity: .85; transform: scale(1.03); }
-    .cs-confirm { display: none; align-items: center; gap: .7rem; font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #FF4D00; }
-    .cs-confirm-icon { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid #FF4D00; display: flex; align-items: center; justify-content: center; font-size: .9rem; }
-    .cs-services { width: 100%; max-width: 680px; border-top: 1px solid rgba(245,240,232,.06); }
-    .cs-svc { display: grid; grid-template-columns: 2.2rem 2rem 1fr auto; align-items: center; gap: 1rem; padding: 1.3rem 0; border-bottom: 1px solid rgba(245,240,232,.05); opacity: 0; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease; position: relative; overflow: hidden; }
-    .cs-svc.booted { opacity: 1; transform: none; }
-    .cs-svc::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,77,0,.18), transparent); transform: translateX(-100%); transition: none; }
-    .cs-svc.sweeping::after { transform: translateX(100%); transition: transform .55s ease; }
-    .cs-svc-num { font-size: .5rem; letter-spacing: .2em; color: #FF4D00; font-weight: 600; }
-    .cs-svc-icon { font-size: 1.1rem; line-height: 1; }
-    .cs-svc-info { text-align: left; }
-    .cs-svc-name { font-weight: 700; font-size: clamp(.88rem, 1.4vw, 1rem); letter-spacing: -.01em; margin-bottom: .2rem; }
-    .cs-svc-desc { font-size: .68rem; font-weight: 300; color: rgba(245,240,232,.35); line-height: 1.5; }
-    .cs-badge { font-size: .42rem; letter-spacing: .12em; text-transform: uppercase; padding: .28rem .75rem; border-radius: 1rem; white-space: nowrap; font-weight: 700; }
-    .badge-live { background: rgba(255,77,0,.15); color: #FF4D00; border: 1px solid rgba(255,77,0,.35); }
-    .badge-q2 { background: rgba(245,240,232,.04); color: rgba(245,240,232,.4); border: 1px solid rgba(245,240,232,.1); }
-    .badge-q3 { background: rgba(245,240,232,.03); color: rgba(245,240,232,.28); border: 1px solid rgba(245,240,232,.07); }
-    .cs-back { position: fixed; bottom: 1.8rem; left: 50%; transform: translateX(-50%); font-size: .5rem; letter-spacing: .28em; text-transform: uppercase; color: rgba(245,240,232,.18); text-decoration: none; z-index: 20; transition: color .3s; }
-    .cs-back:hover { color: #FF4D00; }
-    #confetti-canvas { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 100; }
-    @media (max-width: 600px) {
-      .cs-countdown { gap: 1rem; } .cd-unit { min-width: 48px; }
-      .cs-form { flex-direction: column; align-items: center; } .cs-input { width: 100%; max-width: 280px; }
-      .cs-svc { grid-template-columns: 1.8rem 1.6rem 1fr; } .cs-badge { display: none; }
-    }
-  </style>
-</head>
-<body>
+var initTestimonials = function() {
+  var clients = [
+    { name: 'Zestify',   quote: "Our old site was an embarrassment. PEAKMEDIA built something we show off at every pitch. Conversions went up 280% in 60 days.",         role: 'CEO, Zestify Foods' },
+    { name: 'Inkraft',   quote: "They said our brief was too safe. They were right. The site they built has won us clients we had no business winning.",                 role: 'Founder, Inkraft Studio' },
+    { name: 'Vaultex',   quote: "Every founder who visits our site asks who built it. That question alone has been worth ten times what we paid.",                      role: 'Co-Founder, Vaultex' },
+    { name: 'Kratos',    quote: "We've worked with three agencies before. None of them understood that a website is a product, not a brochure. PEAKMEDIA did.",          role: 'CPO, Kratos Ventures' },
+    { name: 'Lumenary',  quote: "They pushed back on two of our ideas and were right both times. That honesty is rare. The website is rarer.",                          role: 'Brand Director, Lumenary' },
+    { name: 'Orion',     quote: "PEAKMEDIA doesn't make websites. They build digital reputations. Ours has never been stronger.",                                        role: 'MD, Orion Capital' }
+  ];
 
-<canvas id="particle-canvas"></canvas>
-<canvas id="radar-canvas"></canvas>
-<canvas id="scanline-canvas"></canvas>
-<canvas id="confetti-canvas"></canvas>
+  var ring  = document.getElementById('orbit-ring');
+  if(!ring) return;
+  var backdrop = document.createElement('div');
+  backdrop.className = 'testi-modal-backdrop';
+  backdrop.id = 'testi-backdrop';
+  var modal = document.createElement('div');
+  modal.className = 'testi-modal';
+  var closeBtn = document.createElement('button');
+  closeBtn.className   = 'tmodal-close';
+  closeBtn.textContent = '✕';
+  closeBtn.setAttribute('aria-label','Close');
+  var stars  = document.createElement('div'); stars.className = 'tmodal-stars';
+  var quote  = document.createElement('p');   quote.className = 'tmodal-quote';
+  var name   = document.createElement('div'); name.className  = 'tmodal-name';
+  var role   = document.createElement('div'); role.className  = 'tmodal-role';
+  modal.appendChild(closeBtn); modal.appendChild(stars);
+  modal.appendChild(quote);    modal.appendChild(name); modal.appendChild(role);
+  backdrop.appendChild(modal);
+  document.body.appendChild(backdrop);
 
-<nav id="nav" class="scrolled">
-  <a href="index.html" class="nav-logo">PEAKMEDIA<span class="nav-logo-sub">Studio</span></a>
-  <div class="nav-right">
-    <a href="work.html" class="nav-link">Work</a>
-    <a href="services.html" class="nav-link">Services</a>
-    <a href="studio.html" class="nav-link">Studio</a>
-    <a href="founders.html" class="nav-link">Founders</a>
-    <a href="contact.html" class="nav-cta">Start a Project</a>
-  </div>
-</nav>
-
-<div class="cs-wrap">
-  <p class="cs-eyebrow"><span class="cs-eyebrow-dot"></span>What's Coming</p>
-  <h1 class="cs-headline">We're building<br><span>something bigger.</span></h1>
-  <p class="cs-sub">PEAKMEDIA started with websites. It doesn't end there. Here's what we're rolling out for Indian businesses in 2025–26.</p>
-
-  <div class="cs-countdown" id="countdown">
-    <div class="cd-unit"><span class="cd-num" id="cd-d">00</span><span class="cd-lbl">Days</span></div>
-    <span class="cd-sep">:</span>
-    <div class="cd-unit"><span class="cd-num" id="cd-h">00</span><span class="cd-lbl">Hours</span></div>
-    <span class="cd-sep">:</span>
-    <div class="cd-unit"><span class="cd-num" id="cd-m">00</span><span class="cd-lbl">Minutes</span></div>
-    <span class="cd-sep">:</span>
-    <div class="cd-unit"><span class="cd-num" id="cd-s">00</span><span class="cd-lbl">Seconds</span></div>
-  </div>
-
-  <div class="cs-form-wrap">
-    <div class="cs-form" id="cs-form">
-      <input class="cs-input" type="email" placeholder="your@email.com" id="cs-email">
-      <button class="cs-btn" id="cs-submit">Notify Me</button>
-    </div>
-    <div class="cs-confirm" id="cs-confirm">
-      <span class="cs-confirm-icon">✓</span>You're on the list
-    </div>
-  </div>
-
-  <div class="cs-services">
-    <div class="cs-svc" id="svc-1">
-      <span class="cs-svc-num">01</span><span class="cs-svc-icon">✅</span>
-      <div class="cs-svc-info"><div class="cs-svc-name">Custom Websites</div><div class="cs-svc-desc">Hand-coded. Zero templates. Built to convert.</div></div>
-      <span class="cs-badge badge-live">Live Now</span>
-    </div>
-    <div class="cs-svc" id="svc-2">
-      <span class="cs-svc-num">02</span><span class="cs-svc-icon">🤖</span>
-      <div class="cs-svc-info"><div class="cs-svc-name">AI Agents for Business</div><div class="cs-svc-desc">Custom AI workflows that replace entire manual processes.</div></div>
-      <span class="cs-badge badge-q2">Q2 2025</span>
-    </div>
-    <div class="cs-svc" id="svc-3">
-      <span class="cs-svc-num">03</span><span class="cs-svc-icon">📞</span>
-      <div class="cs-svc-info"><div class="cs-svc-name">AI Calling Agents</div><div class="cs-svc-desc">Voice AI that handles calls, qualifies leads and books appointments.</div></div>
-      <span class="cs-badge badge-q2">Q2 2025</span>
-    </div>
-    <div class="cs-svc" id="svc-4">
-      <span class="cs-svc-num">04</span><span class="cs-svc-icon">🎯</span>
-      <div class="cs-svc-info"><div class="cs-svc-name">AI Ads Creation</div><div class="cs-svc-desc">Campaigns that write, design and optimise themselves. Continuously.</div></div>
-      <span class="cs-badge badge-q3">Q3 2025</span>
-    </div>
-    <div class="cs-svc" id="svc-5">
-      <span class="cs-svc-num">05</span><span class="cs-svc-icon">📱</span>
-      <div class="cs-svc-info"><div class="cs-svc-name">Social Media on Autopilot</div><div class="cs-svc-desc">Posts, reels and captions — generated, scheduled and posted. Daily.</div></div>
-      <span class="cs-badge badge-q3">Q3 2025</span>
-    </div>
-  </div>
-</div>
-
-<a href="index.html" class="cs-back">← Back to PEAKMEDIA</a>
-
-<script>
-/* 1. COUNTDOWN */
-(function(){
-  var target = new Date('2026-01-01T00:00:00').getTime();
-  function pad(n){ return n<10?'0'+n:n; }
-  function tick(){
-    var diff = Math.max(0, target - Date.now());
-    document.getElementById('cd-d').textContent = pad(Math.floor(diff/86400000));
-    document.getElementById('cd-h').textContent = pad(Math.floor((diff%86400000)/3600000));
-    document.getElementById('cd-m').textContent = pad(Math.floor((diff%3600000)/60000));
-    document.getElementById('cd-s').textContent = pad(Math.floor((diff%60000)/1000));
-  }
-  tick(); setInterval(tick,1000);
-})();
-
-/* 3. PARTICLE NETWORK */
-(function(){
-  var cv=document.getElementById('particle-canvas'),ctx=cv.getContext('2d'),W,H;
-  var N=55,pts=[];
-  function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;if(!pts.length)spawn();}
-  function spawn(){pts=[];for(var i=0;i<N;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.45,vy:(Math.random()-.5)*.45,r:.8+Math.random()*1.4});}
-  resize();window.addEventListener('resize',resize,{passive:true});
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    pts.forEach(function(p){
-      p.x+=p.vx;p.y+=p.vy;
-      if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle='rgba(255,77,0,.65)';ctx.fill();
+  var paused = false;
+  clients.forEach(function(c, i){
+    var node = document.createElement('div');
+    node.className = 'orbit-node';
+    node.style.setProperty('--i', i);
+    node.style.setProperty('--total', clients.length);
+    node.textContent = c.name;
+    node.addEventListener('click', function(){
+      stars.textContent   = '★★★★★';
+      quote.textContent   = c.quote;
+      var parts = c.role.split(',');
+      name.textContent    = parts[1] ? parts[1].trim() : c.name;
+      role.textContent    = parts[0].trim();
+      backdrop.classList.add('active');
+      paused = true;
+      ring.style.animationPlayState = 'paused';
     });
-    for(var i=0;i<N;i++)for(var j=i+1;j<N;j++){
-      var dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
-      if(d<130){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle='rgba(255,77,0,'+(0.22*(1-d/130))+')';ctx.lineWidth=.6;ctx.stroke();}
-    }
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
-
-/* 4. RADAR */
-(function(){
-  var cv=document.getElementById('radar-canvas'),ctx=cv.getContext('2d'),W,H,cx,cy,R;
-  var angle=0,blips=[];
-  function norm(a){return((a%(Math.PI*2))+Math.PI*2)%(Math.PI*2);}
-  function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;cx=W/2;cy=H/2;R=Math.min(W,H)*.42;spawnBlips();}
-  function spawnBlips(){blips=[];for(var i=0;i<7;i++)blips.push({a:Math.random()*Math.PI*2,r:.2+Math.random()*.75,glow:0});}
-  resize();window.addEventListener('resize',resize,{passive:true});
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    [.25,.5,.75,1].forEach(function(f){ctx.beginPath();ctx.arc(cx,cy,R*f,0,Math.PI*2);ctx.strokeStyle='rgba(255,77,0,.07)';ctx.lineWidth=1;ctx.stroke();});
-    ctx.strokeStyle='rgba(255,77,0,.06)';ctx.lineWidth=1;
-    ctx.beginPath();ctx.moveTo(cx-R,cy);ctx.lineTo(cx+R,cy);ctx.stroke();
-    ctx.beginPath();ctx.moveTo(cx,cy-R);ctx.lineTo(cx,cy+R);ctx.stroke();
-    /* trail */
-    var tLen=Math.PI*.55;
-    for(var s=0;s<40;s++){
-      var a0=angle-tLen*(s/40),a1=angle-tLen*((s+1)/40);
-      ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,R,a0,a1,true);ctx.closePath();
-      ctx.fillStyle='rgba(255,77,0,'+(( 1-s/40)*0.22)+')';ctx.fill();
-    }
-    /* arm */
-    ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.cos(angle)*R,cy+Math.sin(angle)*R);
-    ctx.strokeStyle='rgba(255,100,0,.9)';ctx.lineWidth=1.5;ctx.stroke();
-    /* blips */
-    blips.forEach(function(b){
-      var bx=cx+Math.cos(b.a)*R*b.r,by=cy+Math.sin(b.a)*R*b.r;
-      if(norm(angle-b.a)<0.08)b.glow=1.0;
-      if(b.glow>0){
-        var g=ctx.createRadialGradient(bx,by,0,bx,by,18*b.glow);
-        g.addColorStop(0,'rgba(255,140,0,'+(.9*b.glow)+')');g.addColorStop(.4,'rgba(255,77,0,'+(.5*b.glow)+')');g.addColorStop(1,'rgba(255,77,0,0)');
-        ctx.beginPath();ctx.arc(bx,by,18*b.glow,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();
-        ctx.beginPath();ctx.arc(bx,by,2.5,0,Math.PI*2);ctx.fillStyle='rgba(255,200,100,'+b.glow+')';ctx.fill();
-        b.glow-=0.008;
-        if(b.glow<=0){b.glow=0;b.a=Math.random()*Math.PI*2;b.r=.2+Math.random()*.75;}
-      } else {
-        ctx.beginPath();ctx.arc(bx,by,1.5,0,Math.PI*2);ctx.fillStyle='rgba(255,77,0,.2)';ctx.fill();
-      }
-    });
-    angle+=0.018;requestAnimationFrame(draw);
-  }
-  draw();
-})();
-
-/* 5. SCANLINE */
-(function(){
-  var cv=document.getElementById('scanline-canvas'),ctx=cv.getContext('2d'),W,H,y=-4,last=performance.now();
-  function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;}
-  resize();window.addEventListener('resize',resize,{passive:true});
-  function draw(now){
-    var e=now-last;y+=(H+8)*(e/6000);if(y>H+4)y=-4;last=now;
-    ctx.clearRect(0,0,W,H);
-    var g=ctx.createLinearGradient(0,y-8,0,y+8);
-    g.addColorStop(0,'rgba(255,77,0,0)');g.addColorStop(.5,'rgba(255,77,0,.55)');g.addColorStop(1,'rgba(255,77,0,0)');
-    ctx.fillStyle=g;ctx.fillRect(0,y-8,W,16);
-    requestAnimationFrame(draw);
-  }
-  requestAnimationFrame(draw);
-})();
-
-/* 6. BOOT SEQUENCE */
-(function(){
-  var delays=[400,900,1300,1750,2200];
-  ['svc-1','svc-2','svc-3','svc-4','svc-5'].forEach(function(id,i){
-    setTimeout(function(){
-      var el=document.getElementById(id);if(!el)return;
-      el.classList.add('sweeping');
-      setTimeout(function(){el.classList.add('booted');},80);
-    },delays[i]);
+    ring.appendChild(node);
   });
-})();
 
-/* 7. EMAIL + CONFETTI */
-(function(){
-  var btn=document.getElementById('cs-submit'),form=document.getElementById('cs-form'),confirm=document.getElementById('cs-confirm');
-  var cv=document.getElementById('confetti-canvas'),ctx=cv.getContext('2d'),W,H,particles=[],animating=false;
-  function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;}
-  resize();window.addEventListener('resize',resize,{passive:true});
-  function burst(){
-    var ox=W/2,oy=H*.42,cols=['#FF4D00','#FF8C00','#FFD166','#FF2200','#FF6B35','#fff'];
-    for(var i=0;i<120;i++){
-      var a=Math.random()*Math.PI*2,sp=3+Math.random()*9;
-      particles.push({x:ox,y:oy,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-4,color:cols[Math.floor(Math.random()*cols.length)],size:3+Math.random()*5,life:1,decay:.012+Math.random()*.018,rot:Math.random()*360,rotV:(Math.random()-.5)*8});
-    }
-    if(!animating){animating=true;draw();}
-  }
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    particles=particles.filter(function(p){return p.life>0;});
-    particles.forEach(function(p){
-      p.x+=p.vx;p.y+=p.vy;p.vy+=.28;p.vx*=.98;p.life-=p.decay;p.rot+=p.rotV;
-      ctx.save();ctx.globalAlpha=Math.max(0,p.life);ctx.translate(p.x,p.y);ctx.rotate(p.rot*Math.PI/180);
-      ctx.fillStyle=p.color;ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size*(Math.random()>.5?2.5:1));ctx.restore();
-    });
-    if(particles.length>0)requestAnimationFrame(draw);else{animating=false;ctx.clearRect(0,0,W,H);}
-  }
-  btn.addEventListener('click',function(){
-    var email=document.getElementById('cs-email').value;
-    if(!email||!email.includes('@'))return;
-    form.style.display='none';confirm.style.display='flex';burst();
-  });
-})();
-</script>
-  <script src="assets/js/ambient.js"></script>
-</body>
-</html>
+  function close(){ backdrop.classList.remove('active'); paused=false; ring.style.animationPlayState='running'; }
+  closeBtn.addEventListener('click', close);
+  backdrop.addEventListener('click', function(e){ if(e.target===backdrop) close(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+};

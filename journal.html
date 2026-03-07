@@ -3,40 +3,105 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PEAKMEDIA — The Journal</title>
+  <title>PEAKMEDIA — Start a Project</title>
   <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&f[]=cabinet-grotesk@400,500,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/nav.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
   <style>
-    .page-hero { padding:14rem 3rem 6rem; max-width:1380px; margin:0 auto; }
-    .page-label { font-family:'Clash Display',sans-serif; font-size:.62rem; letter-spacing:.42em; text-transform:uppercase; color:var(--orange); margin-bottom:1.5rem; display:flex; align-items:center; gap:.8rem; }
-    .page-label::before { content:''; width:1.8rem; height:1px; background:var(--orange); }
-    .page-title { font-family:'Clash Display',sans-serif; font-weight:700; font-size:clamp(4rem,9vw,10rem); letter-spacing:-.04em; line-height:.92; }
-    .page-title span { color:var(--orange); }
-    .posts-grid { padding:0 3rem 8rem; max-width:1380px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:1.4rem; }
-    .post-card { background:var(--card); border-radius:10px; overflow:hidden; border:1px solid rgba(245,240,232,.05); transition:border-color .3s; cursor:none; }
-    .post-card:hover { border-color:rgba(255,77,0,.2); }
-    .post-thumb { height:220px; background:linear-gradient(135deg,#1a0800,#0d0400); position:relative; overflow:hidden; }
-    .post-thumb::after { content:''; position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,.6),transparent); }
-    .post-body { padding:2rem; }
-    .post-meta { display:flex; align-items:center; gap:1rem; margin-bottom:1rem; }
-    .post-tag { font-size:.55rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--orange); border:1px solid rgba(255,77,0,.25); padding:.2rem .6rem; border-radius:2rem; }
-    .post-date { font-size:.6rem; letter-spacing:.12em; color:var(--muted); }
-    .post-title { font-family:'Clash Display',sans-serif; font-weight:600; font-size:1.3rem; line-height:1.2; margin-bottom:.75rem; transition:color .3s; }
-    .post-card:hover .post-title { color:var(--orange); }
-    .post-excerpt { font-size:.855rem; line-height:1.68; color:var(--muted); }
-    .post-read { display:inline-flex; align-items:center; gap:.4rem; font-size:.65rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--orange); margin-top:1.2rem; text-decoration:none; transition:gap .3s; }
-    .post-read:hover { gap:.7rem; }
-    .featured-post { grid-column:span 2; display:grid; grid-template-columns:1.4fr 1fr; }
-    .featured-post .post-thumb { height:100%; min-height:360px; }
+    .contact-wrap { min-height:100vh; display:grid; grid-template-columns:1fr 1fr; }
+
+    /* Left — big statement */
+    .contact-left {
+      padding: 12rem 4rem 4rem;
+      background: #0a0a0a;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: 1px solid rgba(245,240,232,.05);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-left::before {
+      content: 'START';
+      position: absolute;
+      bottom: -2rem; left: -1rem;
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700;
+      font-size: 22vw;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(245,240,232,.03);
+      pointer-events: none;
+      line-height: 1;
+    }
+    .contact-label { font-family:'Clash Display',sans-serif; font-size:.62rem; letter-spacing:.42em; text-transform:uppercase; color:var(--orange); margin-bottom:2rem; display:flex; align-items:center; gap:.8rem; }
+    .contact-label::before { content:''; width:1.8rem; height:1px; background:var(--orange); }
+    .contact-title { font-family:'Clash Display',sans-serif; font-weight:700; font-size:clamp(3rem,5vw,5.5rem); letter-spacing:-.04em; line-height:.92; margin-bottom:2rem; }
+    .contact-title span { color:var(--orange); }
+    .contact-desc { font-size:.95rem; color:var(--muted); line-height:1.7; max-width:360px; margin-bottom:3rem; }
+    .contact-info { display:flex; flex-direction:column; gap:1rem; }
+    .cinfo-row { display:flex; align-items:center; gap:1rem; }
+    .cinfo-icon { width:36px; height:36px; border:1px solid rgba(255,77,0,.2); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.75rem; color:var(--orange); flex-shrink:0; }
+    .cinfo-text { font-size:.82rem; color:var(--muted); }
+    .cinfo-text a { color:var(--cream); text-decoration:none; transition:color .3s; }
+    .cinfo-text a:hover { color:var(--orange); }
+
+    /* Right — form */
+    .contact-right { padding:12rem 4rem 4rem; display:flex; flex-direction:column; justify-content:center; }
+    .form-title { font-family:'Clash Display',sans-serif; font-weight:600; font-size:1.4rem; margin-bottom:3rem; }
+
+    .form-group { margin-bottom:2rem; }
+    .form-label { font-family:'Clash Display',sans-serif; font-size:.58rem; letter-spacing:.28em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:.65rem; }
+    .form-input, .form-textarea, .form-select {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(245,240,232,.1);
+      padding: .7rem 0;
+      color: var(--cream);
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-size: .95rem;
+      outline: none;
+      transition: border-color .3s;
+      -webkit-appearance: none;
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus { border-color: var(--orange); }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--muted); }
+    .form-textarea { resize: none; height: 100px; }
+    .form-select { cursor: none; color:var(--muted); }
+    .form-select option { background: #1a1a1a; color: var(--cream); }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
+
+    .form-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: .7rem;
+      font-family: 'Clash Display', sans-serif;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--orange);
+      border: none;
+      padding: 1rem 2.8rem;
+      border-radius: 4rem;
+      cursor: none;
+      margin-top: 1rem;
+      transition: transform .25s, box-shadow .35s;
+      overflow: hidden;
+      position: relative;
+    }
+    .form-submit:hover { transform: scale(1.03); box-shadow: 0 0 36px rgba(255,77,0,.3); }
+    .submit-arrow { transition: transform .3s; }
+    .form-submit:hover .submit-arrow { transform: translateX(4px); }
+
+    @media (max-width:900px) {
+      .contact-wrap { grid-template-columns:1fr; }
+      .contact-left,.contact-right { padding:8rem 2rem 4rem; }
+    }
   </style>
-<style>
-.page-eye{opacity:0;}
-.page-title .title-line{display:block;overflow:hidden;}
-.page-title .title-inner{display:block;transform:translateY(110%);}
-</style>
 </head>
 <body>
   <div id="cursor"></div>
@@ -47,15 +112,20 @@
     <a href="services.html" class="nav-link">Services</a>
     <a href="studio.html" class="nav-link">Studio</a>
     <a href="founders.html" class="nav-link">Founders</a>
+    <a href="coming-soon.html" class="nav-teaser" id="nav-teaser">
+      <span class="nt-ring"></span>
+      <span class="nt-ring nt-ring2"></span>
+      <span class="nt-dot"></span>
+      <span class="nt-label">What's Coming</span>
+      <span class="nt-arrow">↗</span>
+    </a>
     <a href="contact.html" class="nav-cta">Start a Project</a>
   </div>
-  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
   </nav>
-  <!-- MOBILE MENU -->
+
   <div class="nav-mobile-menu" id="nav-mobile-menu">
-    <button class="nav-mobile-close" id="nav-mobile-close" aria-label="Close menu">✕</button>
+    <button class="nav-mobile-close" id="nav-mobile-close" aria-label="Close">✕</button>
     <a href="index.html">Home</a>
     <a href="work.html">Work</a>
     <a href="services.html">Services</a>
@@ -64,69 +134,76 @@
     <a href="contact.html">Contact</a>
   </div>
 
-  <div class="page-hero">
-    <div class="page-eye">The Journal</div>
-    <h1 class="page-title">
-      <span class="title-line"><span class="title-inner">Thoughts on</span></span>
-      <span class="title-line"><span class="title-inner"><span>craft.</span></span></span>
-    </h1>
-  </div>
-
-  <div class="posts-grid">
-
-    <div class="post-card featured-post" data-reveal>
-      <div class="post-thumb" style="background:linear-gradient(135deg,#3a1400,#0d0400)"></div>
-      <div class="post-body">
-        <div class="post-meta">
-          <span class="post-tag">Process</span>
-          <span class="post-date">Dec 12, 2024</span>
+  <div class="contact-wrap">
+    <div class="contact-left">
+      <div>
+        <div class="contact-label">Start a Project</div>
+        <h1 class="contact-title">Let's build your<br><span>website.</span></h1>
+        <p class="contact-desc">We take on a small number of projects each year — which means every one gets our full attention. Tell us about yours and we'll tell you honestly if we're the right fit.</p>
+      </div>
+      <div class="contact-info">
+        <div class="cinfo-row">
+          <div class="cinfo-icon">@</div>
+          <div class="cinfo-text"><a href="mailto:hello@peakmedia.studio">hello@peakmedia.studio</a></div>
         </div>
-        <div class="post-title">Why we stopped using Figma for final designs</div>
-        <div class="post-excerpt">The gap between a Figma mockup and a real browser is where most agencies quietly abandon their ambition. We closed the gap by removing the handoff entirely.</div>
-        <a href="#" class="post-read">Read Article →</a>
+        <div class="cinfo-row">
+          <div class="cinfo-icon">↗</div>
+          <div class="cinfo-text">Response within 24 hours</div>
+        </div>
+        <div class="cinfo-row">
+          <div class="cinfo-icon">◎</div>
+          <div class="cinfo-text">Remote-first · Available worldwide</div>
+        </div>
       </div>
     </div>
 
-    <div class="post-card" data-reveal>
-      <div class="post-thumb" style="background:linear-gradient(135deg,#090920,#060612)"></div>
-      <div class="post-body">
-        <div class="post-meta"><span class="post-tag">Typography</span><span class="post-date">Nov 28, 2024</span></div>
-        <div class="post-title">Variable fonts changed how we think about type in motion</div>
-        <div class="post-excerpt">When a typeface can breathe, you stop thinking about animation as a layer on top and start thinking about it as a property of the type itself.</div>
-        <a href="#" class="post-read">Read Article →</a>
+    <div class="contact-right">
+      <div class="form-title" data-reveal>Drop us a line.</div>
+      <div class="form-row" data-reveal>
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input class="form-input" type="text" placeholder="Arjun Mehta">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input class="form-input" type="email" placeholder="arjun@company.com">
+        </div>
       </div>
-    </div>
-
-    <div class="post-card" data-reveal="d1">
-      <div class="post-thumb" style="background:linear-gradient(135deg,#001a08,#000b04)"></div>
-      <div class="post-body">
-        <div class="post-meta"><span class="post-tag">Performance</span><span class="post-date">Nov 5, 2024</span></div>
-        <div class="post-title">The case for doing less animation, better</div>
-        <div class="post-excerpt">Most sites overanimate because they can. We've learned that removing 60% of our animations and making the remaining 40% perfect is always the right trade.</div>
-        <a href="#" class="post-read">Read Article →</a>
+      <div class="form-group" data-reveal>
+        <label class="form-label">Your Company or Project</label>
+        <input class="form-input" type="text" placeholder="What's the website for?">
       </div>
-    </div>
-
-    <div class="post-card" data-reveal>
-      <div class="post-thumb" style="background:linear-gradient(135deg,#1a001a,#0d000d)"></div>
-      <div class="post-body">
-        <div class="post-meta"><span class="post-tag">Craft</span><span class="post-date">Oct 18, 2024</span></div>
-        <div class="post-title">On the obsessive details nobody will ever consciously see</div>
-        <div class="post-excerpt">The easing curve on a 200ms transition. The 0.015em letter-spacing on a heading. These are the details that separate something that feels right from something that just works.</div>
-        <a href="#" class="post-read">Read Article →</a>
+      <div class="form-group" data-reveal>
+        <label class="form-label">Approximate Budget</label>
+        <select class="form-select">
+          <option value="" disabled selected>Select a range</option>
+          <option>Under ₹1 Lakh</option>
+          <option>₹1 – 3 Lakhs</option>
+          <option>₹3 – 7 Lakhs</option>
+          <option>₹7 – 15 Lakhs</option>
+          <option>₹15 Lakhs+</option>
+          <option>Let's discuss</option>
+        </select>
       </div>
-    </div>
-
-    <div class="post-card" data-reveal="d1">
-      <div class="post-thumb" style="background:linear-gradient(135deg,#0a1a00,#060f00)"></div>
-      <div class="post-body">
-        <div class="post-meta"><span class="post-tag">Client Work</span><span class="post-date">Sep 30, 2024</span></div>
-        <div class="post-title">How we rebuilt Vault Digital's identity without losing their soul</div>
-        <div class="post-excerpt">The brief said "modernise." What they actually needed was the courage to double down on what already made them different. Here's how we figured that out.</div>
-        <a href="#" class="post-read">Read Article →</a>
+      <div class="form-group" data-reveal>
+        <label class="form-label">When do you need to go live?</label>
+        <select class="form-select">
+          <option value="" disabled selected>Select a timeline</option>
+          <option>ASAP (under 4 weeks)</option>
+          <option>1 – 2 months</option>
+          <option>2 – 4 months</option>
+          <option>Flexible — quality first</option>
+        </select>
       </div>
+      <div class="form-group" data-reveal>
+        <label class="form-label">Tell us about the website</label>
+        <textarea class="form-textarea" placeholder="What does it need to do? Who visits it? What does success look like for you?"></textarea>
+      </div>
+      <button class="form-submit" data-reveal>
+        Send Message
+        <span class="submit-arrow">→</span>
+      </button>
     </div>
-
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -139,10 +216,49 @@
       document.getElementById('nav').classList.add('scrolled');
       var ro = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); } }); }, {threshold:.1});
       document.querySelectorAll('[data-reveal]').forEach(function(el){ ro.observe(el); });
+      document.querySelector('.form-submit').addEventListener('mouseenter', function(){ document.getElementById('cursor').classList.add('swallow'); });
+      document.querySelector('.form-submit').addEventListener('mouseleave', function(){ document.getElementById('cursor').classList.remove('swallow'); });
     });
   </script>
 <script src="assets/js/page-enter.js"></script>
-<script>document.addEventListener("DOMContentLoaded",function(){initPageEnter("THE JOURNAL");});</script>
+<script>document.addEventListener("DOMContentLoaded",function(){initPageEnter("START A PROJECT");});</script>
+
+
+  <div id="launch-overlay">
+    <div id="launch-circle"></div>
+    <div id="launch-words">
+      <div class="lw-word"><span class="lw-inner">What's</span></div>
+      <div class="lw-word"><span class="lw-inner">Coming.</span></div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var btn = document.getElementById('nav-teaser');
+    if(!btn) return;
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      var dest=btn.getAttribute('href');
+      var rect=btn.getBoundingClientRect();
+      var bx=rect.left+rect.width/2, by=rect.top+rect.height/2;
+      var diam=Math.ceil(Math.sqrt(Math.pow(Math.max(bx,innerWidth-bx)*2,2)+Math.pow(Math.max(by,innerHeight-by)*2,2)))*2.2;
+      var ov=document.getElementById('launch-overlay');
+      var cir=document.getElementById('launch-circle');
+      var wds=document.getElementById('launch-words');
+      var inners=wds.querySelectorAll('.lw-inner');
+      cir.style.width=diam+'px'; cir.style.height=diam+'px';
+      cir.style.left=bx+'px'; cir.style.top=by+'px';
+      ov.style.display='block';
+      gsap.to(btn,{scale:0,opacity:0,rotate:180,duration:0.28,ease:'back.in(2)'});
+      gsap.to(cir,{scale:1,duration:0.65,ease:'expo.inOut',delay:0.1});
+      gsap.to(wds,{opacity:1,duration:0.01,delay:0.55});
+      inners.forEach(function(el,i){gsap.to(el,{y:0,duration:0.6,delay:0.58+i*0.1,ease:'expo.out'});});
+      inners.forEach(function(el,i){gsap.to(el,{y:'-110%',duration:0.45,delay:1.1+i*0.06,ease:'expo.in'});});
+      setTimeout(function(){window.location.href=dest;},1550);
+    });
+  })();
+  </script>
+
 
   <script>
   (function(){

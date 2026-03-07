@@ -1,0 +1,44 @@
+#ticker {
+  overflow: hidden;
+  padding: 1.6rem 0;
+  border-top: 1px solid rgba(245,240,232,.07);
+  border-bottom: 1px solid rgba(245,240,232,.07);
+  background: var(--card);
+}
+
+.ticker-row {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  white-space: nowrap;
+  width: max-content;
+}
+
+.ticker-row + .ticker-row {
+  margin-top: .65rem;
+}
+
+.ticker-row.forward  { animation: tickLeft  32s linear infinite; }
+.ticker-row.backward { animation: tickRight 26s linear infinite; }
+
+@keyframes tickLeft  { from { transform: translateX(0); }    to { transform: translateX(-50%); } }
+@keyframes tickRight { from { transform: translateX(-50%); } to { transform: translateX(0); }    }
+
+.ticker-item {
+  font-family: 'Clash Display', sans-serif;
+  font-weight: 300;
+  font-size: .68rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.ticker-sep {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--orange);
+  flex-shrink: 0;
+  opacity: .6;
+}
