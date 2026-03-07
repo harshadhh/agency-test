@@ -318,9 +318,9 @@ nav.scrolled {
 /* each link */
 .nav-mobile-menu a {
   font-family: 'Clash Display', sans-serif;
-  font-weight: 700;
-  font-size: clamp(2.4rem, 10vw, 4.5rem);
-  letter-spacing: -.03em;
+  font-weight: 300;
+  font-size: clamp(2rem, 8.5vw, 3.8rem);
+  letter-spacing: -.04em;
   color: var(--cream);
   text-decoration: none;
   line-height: 1.15;
@@ -330,7 +330,6 @@ nav.scrolled {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: color .2s, padding-left .25s;
   /* stagger in */
   opacity: 0;
   transform: translateY(18px);
