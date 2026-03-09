@@ -348,11 +348,45 @@
         </ul>
       </div>
     </div>
+    <!-- AGENCY TIMER -->
+    <div class="footer-timer" id="footer-timer">
+      <div class="ft-label">PEAKMEDIA has been building</div>
+      <div class="ft-units">
+        <div class="ft-unit"><span class="ft-n" id="ft-days">000</span><span class="ft-l">Days</span></div>
+        <div class="ft-sep">:</div>
+        <div class="ft-unit"><span class="ft-n" id="ft-hours">00</span><span class="ft-l">Hours</span></div>
+        <div class="ft-sep">:</div>
+        <div class="ft-unit"><span class="ft-n" id="ft-mins">00</span><span class="ft-l">Minutes</span></div>
+        <div class="ft-sep">:</div>
+        <div class="ft-unit"><span class="ft-n" id="ft-secs">00</span><span class="ft-l">Seconds</span></div>
+      </div>
+      <div class="ft-sub">and counting — since 07 March 2026</div>
+    </div>
     <div class="footer-bottom">
-      <span class="footer-copy">© 2025 PEAKMEDIA Studio. All rights reserved.</span>
+      <span class="footer-copy">© 2026 PEAKMEDIA Studio. All rights reserved.</span>
       <span class="footer-credit">Built with <span>obsession</span>.</span>
     </div>
   </footer>
+  <script>
+  (function(){
+    var start = new Date('2026-03-07T00:00:00').getTime();
+    function pad(n,len){ return String(n).padStart(len||2,'0'); }
+    function tick(){
+      var now  = Date.now();
+      var diff = Math.max(0, now - start);
+      var secs  = Math.floor(diff / 1000);
+      var mins  = Math.floor(secs / 60);
+      var hours = Math.floor(mins / 60);
+      var days  = Math.floor(hours / 24);
+      document.getElementById('ft-days').textContent  = pad(days, 3);
+      document.getElementById('ft-hours').textContent = pad(hours % 24);
+      document.getElementById('ft-mins').textContent  = pad(mins  % 60);
+      document.getElementById('ft-secs').textContent  = pad(secs  % 60);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+  </script>
 
   <!-- GSAP must load BEFORE your JS files -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
